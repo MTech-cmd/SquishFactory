@@ -1,14 +1,13 @@
 {
   "name": "squishfactory",
   "version": "1.0.0",
-  "description": "A website where you can customize and order your own Squishmellow",
-  "main": "index.js",
+  "description": "A website where you can customize and order your own squishmello",
+  "main": ".eslintrc.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tailwindcss -i ./source.css -o ./style.css --watch"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,14 +18,5 @@
   "bugs": {
     "url": "https://github.com/MTech-cmd/SquishFactory/issues"
   },
-  "homepage": "https://github.com/MTech-cmd/SquishFactory#readme",
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "tailwindcss": "^3.4.1"
-  },
-  "dependencies": {
-    "flowbite": "^2.3.0"
-  }
+  "homepage": "https://github.com/MTech-cmd/SquishFactory#readme"
 }
