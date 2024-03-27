@@ -1,7 +1,7 @@
 {
   "name": "squishfactory",
   "version": "1.0.0",
-  "description": "A website where you can customize and order your own squishmello",
+  "description": "A website where you can customize and order your own squishmellow",
   "main": ".eslintrc.js",
   "directories": {
     "doc": "docs"
@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/MTech-cmd/SquishFactory/issues"
   },
-  "homepage": "https://github.com/MTech-cmd/SquishFactory#readme"
+  "homepage": "https://github.com/MTech-cmd/SquishFactory#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootswatch": "^5.3.3",
+    "fontawesome-free": "^1.0.4"
+  }
 }
