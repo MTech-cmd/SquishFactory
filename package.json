@@ -21,7 +21,7 @@
   "homepage": "https://github.com/MTech-cmd/SquishFactory#readme",
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "bootswatch": "^5.3.3",
-    "fontawesome-free": "^1.0.4"
+    "bootstrap-icons": "^1.11.3",
+    "bootswatch": "^5.3.3"
   }
 }
