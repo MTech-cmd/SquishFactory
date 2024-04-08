@@ -1,0 +1,26 @@
+// Imports
+@import "../node_modules/bootswatch/dist/quartz/_variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootswatch/dist/quartz/_bootswatch";
+@import "../node_modules/fontawesome-free/scss/fontawesome.scss";
+@import "../node_modules/fontawesome-free/scss/brands.scss";
+@import "../node_modules/fontawesome-free/scss/regular.scss";
+@import "../node_modules/fontawesome-free/scss/solid.scss";
+
+
+// Font-face
+@font-face {
+    font-family: Quicksand;
+    src: url("quicksand/Quicksand-VariableFont_wght.ttf");
+}
+
+$fonts-main: (Quicksand, Helvetica, Arial, sans-serif);
+
+body {
+    font-family: $fonts-main;
+}
+
+// Navbar
+.bg-nav {
+    background-color: rgba(27, 33, 65, 0.712);
+}
