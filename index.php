@@ -1,6 +1,6 @@
 <?php
 
-$UserLoggedIn = false;
+$UserLoggedIn = true;
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +19,10 @@ $UserLoggedIn = false;
 
 <body>
 
-    <header>
+    <header class="px-5 bg-nav">
 
         <!-- Start Navbar -->
-        <nav class="navbar navbar-expand-md bg-nav" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md" data-bs-theme="dark">
             <div class="container-fluid">
                 <!-- Left side -->
                 <a class="navbar-brand m-0 p-0 mx-1 " href="#">
@@ -72,21 +72,47 @@ $UserLoggedIn = false;
         <!-- End Navbar -->
 
         <!-- Start Main Slideshow-->
-        <div id="carouselExampleSlidesOnly" class="carousel slide bg-nav" data-bs-ride="carousel" data-bs-pause="false">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="assets/base-mellows/example-alpha.png" class="d-block mx-auto w-25" alt="Red Mellow with headphones">
+                    <img src="assets/examples/default.png" class="d-block mx-auto w-25" alt="Red Mellow with headphones">
                 </div>
-                <div class="carousel-item">
-                    <img src="assets/base-mellows/example-bravo.png" class="d-block mx-auto w-25" alt="White Mellow with angel wings">`
-                </div>
+                <?php foreach (scandir('assets/examples') as $exampleMellow) {
+                    if ($exampleMellow != '.' && $exampleMellow != '..' && $exampleMellow != 'default.png') { ?>
+                        <div class="carousel-item">
+                            <img src="assets/examples/<?= $exampleMellow ?>" class="d-block mx-auto w-25" alt="Example Mellow: <?= $exampleMellow ?>">
+                        </div>
+                    <?php } 
+                } ?>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <a href="#" class="btn btn-info mx-4">Customize Now!</a>
             </div>
         </div>
         <!-- End Main Slideshow-->
     </header>
 
-    
+    <main class="px-5">
+        <h1 class="text-center mt-2">Custom Mellows</h1>
+        <?php foreach (scandir('assets/custom-mellows') as $customMellow) { 
+            if ($customMellow != '.' && $customMellow != '..') { ?>
+            <div class="card border-primary mb-3" style="max-width: 15rem;">
+                <div class="card-header">Custom Mellow</div>
+                <!-- TODO: Pull title from DB -->
+                <div class="card-body">
+                    <img src="assets/custom-mellows/<?= $customMellow ?>" class="card-img-top" alt="Custom Mellow: <?= $customMellow ?>">
+                </div>
+                <div class="card-footer">
+                    <p class="card-text">Price: €<?= rand(10, 50) ?></p>
+                    <a class="btn btn-success d-flex justify-content-center" href="#">Buy Now!</a>
+                </div>
+            </div>
+            <?php }
+        } ?>
+    </main>
 
+    <footer class="bg-nav text-center p-1">
+        <p>&copy; 2021 My Mellow</p>
 </body>
 
 </html>
