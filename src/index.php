@@ -7,26 +7,26 @@ require_once 'head.php';
     <title>My Mellow</title>
 </head>
 
-<body>
-
-    <header>
-
-        <?php require_once 'navbar.php'; ?>
-
-        <!-- Start Main Slideshow-->
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/examples/default.png" class="d-block mx-auto w-25" alt="Red Mellow with headphones">
-                </div>
-                <!-- TODO: Port to PDO -->
-                <!-- TODO: Set fixed img size -->
-                <?php foreach (scandir('assets/examples') as $exampleMellow) {
+<body class="d-flex flex-column">
+    <div class="d-block">
+        <header>
+            
+            <?php require_once 'navbar.php'; ?>
+            
+            <!-- Start Main Slideshow-->
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/examples/default.png" class="d-block mx-auto w-25" alt="Red Mellow with headphones">
+                    </div>
+                    <!-- TODO: Port to PDO -->
+                    <!-- TODO: Set fixed img size -->
+                    <?php foreach (scandir('assets/examples') as $exampleMellow) {
                     if ($exampleMellow != '.' && $exampleMellow != '..' && $exampleMellow != 'default.png') { ?>
                         <div class="carousel-item">
                             <img src="assets/examples/<?= $exampleMellow ?>" class="d-block mx-auto w-25" alt="Example Mellow: <?= $exampleMellow ?>">
                         </div>
-                    <?php } 
+                        <?php } 
                 } ?>
             </div>
             <div class="carousel-caption d-none d-md-block">
@@ -35,7 +35,7 @@ require_once 'head.php';
         </div>
         <!-- End Main Slideshow-->
     </header>
-
+    
     <main class="px-5">
         <h1 class="text-center mt-2">Custom Mellows</h1>
         <?php foreach (scandir('assets/custom-mellows') as $customMellow) { 
@@ -54,7 +54,8 @@ require_once 'head.php';
             <?php }
         } ?>
     </main>
-
+    
+</div>
     <footer class="bg-nav text-center p-1 mt-auto">
         <p>&copy; 2021 My Mellow</p>
     </footer>
