@@ -21,6 +21,8 @@ CREATE TABLE `Accessories`
     Filepath    TEXT        NOT NULL
 );
 
+
+
 CREATE TABLE `Users`
 (
     UserID         MEDIUMINT    NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -40,6 +42,14 @@ CREATE TABLE `Admins`
     Password TEXT        NOT NULL
 );
 
+CREATE TABLE `Examples`
+(
+    ExampleID MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Filepath  TEXT,
+    AdminID   MEDIUMINT NOT NULL,
+    FOREIGN KEY (AdminID) REFERENCES Admins (AdminID)
+);
+
 CREATE TABLE `Orders`
 (
     OrderID         MEDIUMINT    NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -47,8 +57,9 @@ CREATE TABLE `Orders`
     LastName        VARCHAR(60)  NOT NULL,
     BillingAddress  VARCHAR(255) NOT NULL,
     ShippingAddress VARCHAR(255) NOT NULL,
-    Email           varchar(255) NOT NULL,
-    Phone           varchar(30)  NOT NULL,
+    Email           VARCHAR(255) NOT NULL,
+    Phone           VARCHAR(30)  NOT NULL,
+    OrderDate       DATE         NOT NULL,
     ProductID       MEDIUMINT    NOT NULL,
     AccessoryID     MEDIUMINT    NULL,
     UserID          MEDIUMINT    NULL,

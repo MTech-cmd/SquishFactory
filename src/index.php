@@ -1,6 +1,6 @@
 <?php
 
-require_once 'head.php';
+include 'head.php';
 ?>
 
 <head>
@@ -11,7 +11,7 @@ require_once 'head.php';
     <div class="d-block">
         <header>
             
-            <?php require_once 'navbar.php'; ?>
+            <?php include 'navbar.php'; ?>
             
             <!-- Start Main Slideshow-->
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
@@ -22,12 +22,12 @@ require_once 'head.php';
                     <!-- TODO: Port to PDO -->
                     <!-- TODO: Set fixed img size -->
                     <?php foreach (scandir('assets/examples') as $exampleMellow) {
-                    if ($exampleMellow != '.' && $exampleMellow != '..' && $exampleMellow != 'default.png') { ?>
+                        if ($exampleMellow != '.' && $exampleMellow != '..' && $exampleMellow != 'default.png') { ?>
                         <div class="carousel-item">
                             <img src="assets/examples/<?= $exampleMellow ?>" class="d-block mx-auto w-25" alt="Example Mellow: <?= $exampleMellow ?>">
                         </div>
                         <?php } 
-                } ?>
+                    } ?>
             </div>
             <div class="carousel-caption d-none d-md-block">
                 <a href="#" class="btn btn-info mx-4">Customize Now!</a>
@@ -56,9 +56,7 @@ require_once 'head.php';
     </main>
     
 </div>
-    <footer class="bg-nav text-center p-1 mt-auto">
-        <p>&copy; 2021 My Mellow</p>
-    </footer>
+<?php include 'footer.php'; ?>
 </body>
 
 </html>
