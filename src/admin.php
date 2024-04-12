@@ -1,6 +1,6 @@
 <?php
 
-$loggedIn = false;
+$loggedIn = true;
 ?>
 
 <!DOCTYPE html>
@@ -60,8 +60,6 @@ $loggedIn = false;
             </li>
         </ul>
     </nav>
-
-
 
     <main>
         <!-- Mobile navbar-->
