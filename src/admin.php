@@ -1,6 +1,23 @@
 <?php
 
-$loggedIn = true;
+require "connector.php";
+session_start();
+if (isset($_SESSION['AdminID'])) {
+    $loggedIn = $_SESSION['AdminID'];
+} else {
+    $loggedIn = false;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    $sql = "SELECT AdminID, Password FROM Admins WHERE Username = :username;";
+    $query = $pdo->prepare($sql);
+    $query->bindParam(':username', $_POST['username']);
+    $query->execute();
+    $data = $query->fetch(PDO::FETCH_ASSOC);
+    if (password_verify($data['Password'], PASSWORD_DEFAULT)) {
+        $_SESSION['AdminID'] = $data['AdminID'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +41,11 @@ $loggedIn = true;
             <img src="assets/logo-admin.png" class="w-25 mt-5" alt="Admin logo">
         </header>
 
-        <form class="mt-5 w-50 m-auto">
+        <form class="mt-5 w-50 m-auto" action="admin.php" method="POST">
 
             <div>
                 <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username">
+                <input type="text" class="form-control" id="username" name="username">
             </div>
 
             <div>
@@ -90,7 +107,7 @@ $loggedIn = true;
     </div>
 
 </main>
-<?php } ?>
 </body>
+<?php } ?>
 
 </html>

@@ -15,3 +15,10 @@ try {
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
+
+function bindparams($query, $params) 
+{
+    foreach ($params as $placeholder => &$param) {
+        $query->bindParam($placeholder, $param);
+    }
+}
