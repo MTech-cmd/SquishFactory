@@ -21,8 +21,6 @@ CREATE TABLE `Accessories`
     Filepath    TEXT        NOT NULL
 );
 
-
-
 CREATE TABLE `Users`
 (
     UserID         MEDIUMINT    NOT NULL AUTO_INCREMENT PRIMARY KEY,
