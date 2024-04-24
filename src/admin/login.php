@@ -1,8 +1,8 @@
 <?php
 
-$skillissue = false;
 require "../connector.php";
 session_start();
+$_SESSION['skillissue'] = false;
 if (isset($_SESSION['AdminID'])) {
     header("Location: home.php");
     die;
@@ -15,11 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $query->execute();
     $data = $query->fetch(PDO::FETCH_ASSOC);
     if (password_verify($_POST['password'], $data['Password'])) {
+        $_SESSION['skillissue'] = false;
         $_SESSION['AdminID'] = $data['AdminID'];
         header("Location: home.php");
         die;
     } else {
-        $skillissue = true;
+        $_SESSION['skillissue'] = true;
     }
 }
 
@@ -44,7 +45,7 @@ include "head.php";
                 <label for="password" class="form-label mt-2">Password:</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
-            <?php if ($skillissue) { ?>
+            <?php if ($_SESSION['skillissue']) { ?>
                 <p class="text-danger">Incorrect username or password</p>
             <?php } ?>
             <button type="submit" class="btn btn-info mt-2">Log in</button>

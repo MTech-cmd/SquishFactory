@@ -9,7 +9,7 @@ CREATE TABLE `Mellows`
     ProductID MEDIUMINT   NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Name      VARCHAR(60) NOT NULL,
     Price     MEDIUMINT   NOT NULL,
-    Custom    BOOL        NOT NULL,
+    Custom    BOOL        NOT NULL DEFAULT 1,
     Filepath  TEXT        NOT NULL
 );
 

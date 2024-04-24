@@ -6,13 +6,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (empty($_POST['name'] || $_POST['price'] || $_POST['type'] || $_FILES['image'])) {
         echo "All fields are required.";
     } else {
-        if ($_POST['type'] == "Mellow")
-        $targetDir = "../assets/custom-mellows/";
+        if ($_POST['type'] == "Mellow") {
+            $targetDir = "../assets/custom-mellows/";
+        } else {
+            $targetDir = "../assets/accessories/";
+        }
         $targetFile = $targetDir . basename($_FILES["image"]["name"]);
         move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile);
 
         try {
-            $stmt = $pdo->prepare("INSERT INTO products (name, price, type, image) VALUES (:name, :price, :type, :image)");
+            $stmt = $pdo->prepare("INSERT INTO :category (name, price, type, image) VALUES (:name, :price, :type, :image)");
 
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':price', $price);
