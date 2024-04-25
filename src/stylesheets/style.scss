@@ -2,6 +2,7 @@
 @import "../../node_modules/bootswatch/dist/quartz/_variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootswatch/dist/quartz/_bootswatch";
+
 @import "../../node_modules/fontawesome-free/scss/fontawesome.scss";
 @import "../../node_modules/fontawesome-free/scss/brands.scss";
 @import "../../node_modules/fontawesome-free/scss/regular.scss";
@@ -14,7 +15,7 @@
     src: url("quicksand/Quicksand-VariableFont_wght.ttf");
 }
 
-$fonts-main: (Quicksand, Helvetica, Arial, sans-serif);
+$fonts-main: (Quicksand, Helvetica, Arial, sans-serif, times new roman);
 
 body {
     font-family: $fonts-main;

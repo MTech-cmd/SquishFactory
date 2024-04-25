@@ -18622,7 +18622,7 @@ readers do not read off random characters that represent icons */
   src: url("quicksand/Quicksand-VariableFont_wght.ttf");
 }
 body {
-  font-family: Quicksand, Helvetica, Arial, sans-serif;
+  font-family: Quicksand, Helvetica, Arial, sans-serif, times new roman;
 }
 
 .bg-nav {

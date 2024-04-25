@@ -2,7 +2,9 @@
 
 require "../connector.php";
 session_start();
-$_SESSION['skillissue'] = false;
+if (!isset($_SESSION['skillissue'])) {
+    $_SESSION['skillissue'] = false;
+}
 if (isset($_SESSION['AdminID'])) {
     header("Location: home.php");
     die;
@@ -46,10 +48,19 @@ include "head.php";
                 <input type="password" class="form-control" id="password" name="password">
             </div>
             <?php if ($_SESSION['skillissue']) { ?>
-                <p class="text-danger">Incorrect username or password</p>
+                <div class="alert alert-danger mt-2 p-1" role="alert">
+                    <p class="text-white">Incorrect username or password</p>
+                </div>
             <?php } ?>
             <button type="submit" class="btn btn-info mt-2">Log in</button>
         </form>
 
     </div>
 </body>
+
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    header("Location: login.php");
+    die;
+}
