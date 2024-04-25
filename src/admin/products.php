@@ -89,7 +89,7 @@ include "head.php";
                     <div class="card-header"><?= $accessory['Name'] ?></div>
                     <div class="card-body">
                         <p class="card-text">Price: $<?= $accessory['Price'] ?></p>
-                        <a class="btn btn-outline-success" href="edit_product.php?id=<?= $accessory['ProductID'] ?>">Edit</a>
+                        <a class="btn btn-outline-success" href="edit_accessory.php?id=<?= $accessory['AccessoryID'] ?>">Edit</a>
                     </div>
                 </div>
             <?php } ?>
