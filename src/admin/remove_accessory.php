@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
     $productID = $_GET['id'];
 
     // Check if the product exists
-    $sql = "SELECT * FROM Mellows WHERE ProductID = :id";
+    $sql = "SELECT * FROM Accessories WHERE AccessoryID = :id";
     $query = $pdo->prepare($sql);
     $query->bindParam(':id', $productID);
     $query->execute();
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
     }
 
     // Delete the product from the database
-    $sql = "DELETE FROM Mellows WHERE ProductID = :id";
+    $sql = "DELETE FROM Accessories WHERE AccessoryID = :id";
     $query = $pdo->prepare($sql);
     $query->bindParam(':id', $productID);
     $query->execute();

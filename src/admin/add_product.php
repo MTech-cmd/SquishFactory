@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['skillissue'])) {
     $_SESSION['skillissue'] = null;
 }
+
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
     die;
@@ -46,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $query->bindParam(':price', $price, PDO::PARAM_INT);
         $query->bindParam(':image', $targetFile);
         $query->execute();
+
+        header("Location: products.php");
+        die;
     }
 }
 

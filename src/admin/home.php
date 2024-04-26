@@ -26,10 +26,10 @@ include "head.php";
             <li class="btn-group-vertical">
                 <a class="btn btn-outline-info" href="home.php">Home</a>
                 <a class="btn btn-info" href="products.php">Products</a>
-                <a class="btn btn-info" href="pilot.php">Landing Page</a>
-                <a class="btn btn-info" href="coupons.php">Coupons</a>
-                <a class="btn btn-info" href="orders.php">Orders</a>
-                <a class="btn btn-info" href="accounts.php">Accounts</a>
+                <a class="btn btn-info disabled" href="pilot.php">Landing Page</a>
+                <a class="btn btn-info disabled" href="coupons.php">Coupons</a>
+                <a class="btn btn-info disabled" href="orders.php">Orders</a>
+                <a class="btn btn-info disabled" href="accounts.php">Accounts</a>
             </li>
             <li class="mt-3 m-auto">
                 <a class="btn btn-outline-danger " href="../logout.php">Log out</a>
@@ -52,11 +52,11 @@ include "head.php";
         <div class="offcanvas-body m-auto">
             <li class="btn-group-vertical align-items-center">
                 <a class="btn btn-outline-info" href="home.php">Home</a>
-                <a class="btn btn-info" href="products.php">Products</a>
-                <a class="btn btn-info" href="pilot.php">Landing Page</a>
-                <a class="btn btn-info" href="coupons.php">Coupons</a>
-                <a class="btn btn-info" href="orders.php">Orders</a>
-                <a class="btn btn-info" href="accounts.php">Accounts</a>
+                <a class="btn btn-info disabled" href="products.php">Products</a>
+                <a class="btn btn-info disabled" href="pilot.php">Landing Page</a>
+                <a class="btn btn-info disabled" href="coupons.php">Coupons</a>
+                <a class="btn btn-info disabled" href="orders.php">Orders</a>
+                <a class="btn btn-info disabled" href="accounts.php">Accounts</a>
             </li>
             <div class="mt-3">
                 <a class="btn btn-outline-danger" href="../logout.php">Log out</a>
@@ -67,7 +67,7 @@ include "head.php";
     <div class="container-fluid">
         <h1 class="text-white">Welcome Admin!</h1>
         <?php if (empty($data)) { ?>
-            <p class="text-white">There are no new orders :)</p>
+            <p class="text-white">There are no pending orders :)</p>
         <?php } else {
             foreach ($data as $row) { ?>
                 <?= $row['OrderID'] ?>
