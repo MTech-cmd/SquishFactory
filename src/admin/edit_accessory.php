@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         die;
     }
 
-    $price = str_replace(".", "", $_POST['price']);
+    $price = intval($_POST['price']);
 
     // Check if a file was uploaded
     if (!empty($_FILES['image']['name'])) {

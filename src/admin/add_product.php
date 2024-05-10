@@ -13,7 +13,7 @@ if (!isset($_SESSION['AdminID'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $name = htmlspecialchars($_POST['name']);
-    $price = intval(htmlspecialchars($_POST['price']));
+    $price = intval($_POST['price']);
 
     if (empty($_POST['name']) || empty($_POST['price']) || empty($_POST['type']) || empty($_FILES['image'])) {
         $_SESSION['skillissue'] = "allfields";
