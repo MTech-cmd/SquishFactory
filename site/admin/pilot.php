@@ -6,6 +6,8 @@ if (!isset($_SESSION['AdminID'])) {
     die;
 }
 
+$sql = "SELECT * FROM Examples";
+
 include "head.php";
 ?>
 

@@ -1,6 +1,5 @@
 <?php
 
-header("location: admin/home.php"); // TODO: Delete redirect to admin/home.php
 include 'head.php';
 ?>
 

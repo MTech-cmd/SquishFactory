@@ -1,4 +1,6 @@
 <?php
+
+// TODO: Merge with remove accessory
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");

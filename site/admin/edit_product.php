@@ -1,5 +1,12 @@
 <?php
 
+// TODO: Merge with edit accessory
+
+function cleanInt($val)
+{
+    return intval(str_replace(array('.', ','), '', $val));
+}
+
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
@@ -8,11 +15,16 @@ if (!isset($_SESSION['AdminID'])) {
 
 require "../connector.php";
 
-$sql = "SELECT * FROM Accessories WHERE AccessoryID = :id";
+$sql = ($_GET['type'] === 'mellow') ? "SELECT * FROM Mellows WHERE ProductID = :id" : "SELECT * FROM Accessories WHERE AccessoryID = :id";
+var_dump($_SERVER['REQUEST_URI']);
 $query = $pdo->prepare($sql);
 $query->bindParam(':id', $_GET['id']);
 $query->execute();
-$accessory = $query->fetch();
+$product = $query->fetch();
+
+$euro = substr($product['Price'], 0, -2);
+$cent = substr($product['Price'], -2);
+$price = $euro . "." . $cent;
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (empty($_POST['name']) || empty($_POST['price'])) {
@@ -21,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         die;
     }
 
-    $price = intval($_POST['price']);
+    $price = cleanInt($_POST['price']);
 
     // Check if a file was uploaded
     if (!empty($_FILES['image']['name'])) {
@@ -44,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         move_uploaded_file($_FILES['image']['tmp_name'], $filename);
 
         // Update the filepath in the database
-        $sql = "UPDATE Accessories SET Filepath = :filepath WHERE AccessoryID = :id";
+        $sql = "UPDATE Mellows SET Filepath = :filepath WHERE ProductID = :id";
         $query = $pdo->prepare($sql);
         $query->bindParam(':filepath', $filename);
         $query->bindParam(':id', $_GET['id']);
@@ -52,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
     // Update other fields in the database
-    $sql = "UPDATE Accessories SET Name = :name, Price = :price WHERE AccessoryID = :id";
+    $sql = "UPDATE Mellows SET Name = :name, Price = :price WHERE ProductID = :id";
     $query = $pdo->prepare($sql);
     $query->bindParam(':name', $_POST['name']);
     $query->bindParam(':price', $price);
@@ -67,14 +79,14 @@ include "head.php";
 ?>
 
 <body class="container mt-3">
-    <form action="edit_accessory.php?id=<?= $_GET['id'] ?>" method="POST" enctype="multipart/form-data">
+    <form action="edit_product.php?id=<?= $_GET['id'] ?>" method="POST" enctype="multipart/form-data">
         <div>
             <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" maxlength="60" value="<?= $accessory['Name'] ?>">
+            <input type="text" class="form-control" id="name" name="name" maxlength="60" value="<?= $mellow['Name'] ?>">
         </div>
         <div>
             <label for="price" class="form-label">Price (Eurocent):</label>
-            <input type="number" class="form-control" id="price" name="price" value="<?= $accessory['Price'] ?>" maxlength="6">
+            <input type="number" class="form-control" id="price" name="price" value="<?= $mellow['Price'] ?>" maxlength="6">
         </div>
         <div>
             <label for="image" class="form-label">Edit Picture:</label>
@@ -109,10 +121,10 @@ include "head.php";
                 unset($_SESSION['skillissue']);
             } ?>
         </div>
-        <img src="<?= $accessory['Filepath'] ?>" alt="Product Image" class="img-fluid mt-2" style="max-width: 100px;">
+        <img src="<?= $mellow['Filepath'] ?>" alt="Product Image" class="img-fluid mt-2" style="max-width: 100px;">
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-success">Edit</button>
-            <a href="remove_accessory.php?id=<?= $accessory['AccessoryID'] ?>" class="btn btn-outline-danger"><i
+            <a href="remove_product.php?id=<?= $mellow['ProductID'] ?>" class="btn btn-outline-danger"><i
                     class="fas fa-trash"></i> Delete</a>
             <a href="products.php" class="btn btn-outline-primary"><i class="fas fa-arrow-left"></i> Go Back</a>
         </div>

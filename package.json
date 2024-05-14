@@ -7,7 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sh build.conf",
+    "dev": "sh build.conf && sass --watch --verbose site/stylesheets/src:site/stylesheets/dist"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,9 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootswatch": "^5.3.3",
-    "fontawesome-free": "^1.0.4"
+    "fontawesome-free": "^1.0.4",
+    "ncp": "^2.0.0",
+    "sass": "^1.77.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

@@ -1,4 +1,6 @@
 <?php
+
+// TODO: Merge with remove_product
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");

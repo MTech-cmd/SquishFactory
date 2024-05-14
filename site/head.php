@@ -7,6 +7,6 @@
     <meta name="author" content="Mehdi El Khallouki">
     <meta name="description" content="A website where you can customize and order your own squishmellow">
     <link rel="icon" href="assets/favicon.svg">
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <script type="module" src="scripts/script.js"></script>
+    <link rel="stylesheet" href="stylesheets/dist/style.css">
+    <script type="module" src="scripts/dist/script.js"></script>
 </head>
