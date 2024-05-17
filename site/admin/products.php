@@ -90,7 +90,7 @@ include "head.php";
                         <div class="card-body">
                             <p class="card-text">Price: €<?= $price ?></p>
                             <a class="btn btn-outline-success"
-                                href="edit_product.php?type=mellow?id=<?= $mellow['ProductID'] ?>">Edit</a>
+                                href="edit_product.php?type=mellow&id=<?= $mellow['ProductID'] ?>">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ include "head.php";
                         <div class="card-body">
                             <p class="card-text">Price: €<?= $price ?></p>
                             <a class="btn btn-outline-success"
-                                href="edit_accessory.php?type=accessory?id=<?= $accessory['AccessoryID'] ?>">Edit</a>
+                                href="edit_accessory.php?type=accessory&id=<?= $accessory['AccessoryID'] ?>">Edit</a>
                         </div>
                     </div>
                 </div>

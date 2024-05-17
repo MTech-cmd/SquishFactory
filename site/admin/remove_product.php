@@ -9,13 +9,18 @@ if (!isset($_SESSION['AdminID'])) {
 
 require "../connector.php";
 
-if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
-    $productID = $_GET['id'];
-
+if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    if ($_GET['type'] === 'mellow') {
+        $type = "Mellows";
+        $typeid = "ProductID";
+    } else {
+        $type = "Accessories";
+        $typeid = "AccessoryID";
+    }
     // Check if the product exists
-    $sql = "SELECT * FROM Mellows WHERE ProductID = :id";
+    $sql = "SELECT * FROM {$type} WHERE {$typeid} = :id";
     $query = $pdo->prepare($sql);
-    $query->bindParam(':id', $productID);
+    $query->bindParam(':id', $_GET['id']);
     $query->execute();
     $product = $query->fetch();
 
@@ -26,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
     }
 
     // Delete the product from the database
-    $sql = "DELETE FROM Mellows WHERE ProductID = :id";
+    $sql = "DELETE FROM {$type} WHERE {$typeid} = :id";
     $query = $pdo->prepare($sql);
-    $query->bindParam(':id', $productID);
+    $query->bindParam(':id', $_GET['id']);
     $query->execute();
 
     // Delete the product image if it exists
