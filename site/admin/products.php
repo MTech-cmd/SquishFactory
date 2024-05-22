@@ -74,8 +74,7 @@ include "head.php";
                 <div class="col-12">
                     <h2 class="text-white">Mellows</h2>
                 </div>
-                <?php } ?>
-                <?php foreach ($mellows as $mellow) {
+                <?php } foreach ($mellows as $mellow) {
                     $euro = substr($mellow['Price'], 0, -2);
                     $cent = substr($mellow['Price'], -2);
                     $price = $euro . "," . $cent;
@@ -117,7 +116,7 @@ include "head.php";
                         <div class="card-body">
                             <p class="card-text">Price: €<?= $price ?></p>
                             <a class="btn btn-outline-success"
-                                href="edit_accessory.php?type=accessory&id=<?= $accessory['AccessoryID'] ?>">Edit</a>
+                                href="edit_product.php?type=accessory&id=<?= $accessory['AccessoryID'] ?>">Edit</a>
                         </div>
                     </div>
                 </div>

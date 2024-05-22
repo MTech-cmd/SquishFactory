@@ -6,6 +6,12 @@ if (!isset($_SESSION['AdminID'])) {
     die;
 }
 
+require "../connector.php";
+
+$sql = "SELECT * FROM Coupons";
+$query = $pdo->query($sql);
+$data = $query->fetchAll();
+
 include "head.php";
 ?>
 
@@ -59,8 +65,38 @@ include "head.php";
     </div>
     <!-- Main Content -->
     <div class="container-fluid">
-        <h1 class="text-white">Welcome Admin!</h1>
-        <p class="text-white">There are no new orders today :)</p>
+    <div class="row">
+            <?php foreach ($data as $coupon) {
+                $sqlid = "SELECT Username FROM Admins WHERE AdminID = :id";
+                $queryid = $pdo->prepare($sqlid);
+                $queryid->bindParam(':id', $coupon['AdminID']);
+                $queryid->execute();
+                $author = ($queryid->fetch())[0];
+                if ($coupon['Percentage'] == 1) {
+                    $total = $coupon['Amount'] . "%";
+                } else {
+                    $euro = substr($coupon['Amount'], 0, -2);
+                    $cent = substr($coupon['Amount'], -2);
+                    $total = $euro . "," . $cent;
+                }
+                ?>
+                <div class="col-md-4 mt-3">
+                    <div class="card text-white bg-dark">
+                        <div class="card-body">
+                            <p><?= $coupon['Code'] ?></p>
+                            <p>Uploaded by: <?= $author ?></p>
+                            <p>Status: <?= $coupon['Status'] ?></p>
+                            <p><?= $total ?></p>
+                            <a class="btn btn-outline-danger" href="remove_product.php?type=pilot&id=<?= $pilot['ExampleID'] ?>">
+                            <i class="fas fa-trash"></i> Delete</a>
+
+                            <a class="btn btn-outline-primary" href="remove_product.php?type=pilot&id=<?= $pilot['ExampleID'] ?>">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <a class="btn btn-outline-success mt-3" href="add_coupon.php">Create New Coupon</a>
     </div>
 
 </main>

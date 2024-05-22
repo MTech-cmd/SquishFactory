@@ -2,7 +2,7 @@
 
 function cleanInt($val)
 {
-    return intval(str_replace(array('.', ','), '', $val));
+    return intval(htmlspecialchars(str_replace(array('.', ','), '', $val)));
 }
 
 session_start();
@@ -128,8 +128,8 @@ include "head.php";
         <img src="<?= $product['Filepath'] ?>" alt="Product Image" class="img-fluid mt-2" style="max-width: 100px;">
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-success">Edit</button>
-            <a href="remove_product.php?type=<?= $_GET['type'] ?>&id=<?= $product['ProductID'] ?>" class="btn btn-outline-danger"><i
-                    class="fas fa-trash"></i> Delete</a>
+            <a href="remove_product.php?type=<?= $_GET['type'] ?>&id=<?= $product[$typeid] ?>" class="btn btn-outline-danger">
+                <i class="fas fa-trash"></i> Delete</a>
             <a href="products.php" class="btn btn-outline-primary"><i class="fas fa-arrow-left"></i> Go Back</a>
         </div>
     </form>

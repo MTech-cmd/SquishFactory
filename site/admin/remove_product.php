@@ -1,6 +1,5 @@
 <?php
 
-// TODO: Merge with remove accessory
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
@@ -10,19 +9,32 @@ if (!isset($_SESSION['AdminID'])) {
 require "../connector.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    if ($_GET['type'] === 'mellow') {
-        $type = "Mellows";
-        $typeid = "ProductID";
-    } else {
-        $type = "Accessories";
-        $typeid = "AccessoryID";
+    switch ($_GET['type']) {
+        case 'mellow':
+            $type = "Mellows";
+            $typeid = "ProductID";
+            $location = "Location: products.php";
+            break;
+        case 'accessory':
+            $type = "Accessories";
+            $typeid = "AccessoryID";
+            $location = "Location: products.php";
+            break;
+        case 'pilot':
+            $type = "Examples";
+            $typeid = "ExampleID";
+            $location = "Location: pilot.php";
+            break;
+        default:
+            $location = "Location: products.php";
+            break;
     }
     // Check if the product exists
-    $sql = "SELECT * FROM {$type} WHERE {$typeid} = :id";
-    $query = $pdo->prepare($sql);
-    $query->bindParam(':id', $_GET['id']);
-    $query->execute();
-    $product = $query->fetch();
+        $sql = "SELECT * FROM {$type} WHERE {$typeid} = :id";
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':id', $_GET['id']);
+        $query->execute();
+        $product = $query->fetch();
 
     if (!$product) {
         $_SESSION['error'] = "Product not found";
@@ -31,21 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     }
 
     // Delete the product from the database
-    $sql = "DELETE FROM {$type} WHERE {$typeid} = :id";
-    $query = $pdo->prepare($sql);
-    $query->bindParam(':id', $_GET['id']);
-    $query->execute();
+        $sql = "DELETE FROM {$type} WHERE {$typeid} = :id";
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':id', $_GET['id']);
+        $query->execute();
 
     // Delete the product image if it exists
     if (file_exists($product['Filepath'])) {
         unlink($product['Filepath']);
     }
-
-    $_SESSION['success'] = "Product deleted successfully";
-    header("Location: products.php");
+        $_SESSION['success'] = "Product deleted successfully";
+        header($location);
     die;
 } else {
     $_SESSION['error'] = "Invalid request";
-    header("Location: products.php");
+    header($location);
     die;
 }

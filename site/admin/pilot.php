@@ -6,7 +6,11 @@ if (!isset($_SESSION['AdminID'])) {
     die;
 }
 
+require "../connector.php";
+
 $sql = "SELECT * FROM Examples";
+$query = $pdo->query($sql);
+$data = $query->fetchAll();
 
 include "head.php";
 ?>
@@ -61,8 +65,27 @@ include "head.php";
     </div>
     <!-- Main Content -->
     <div class="container-fluid">
-        <h1 class="text-white">Welcome Admin!</h1>
-        <p class="text-white">There are no new orders today :)</p>
+        <div class="row">
+            <?php foreach ($data as $pilot) {
+                $sqlid = "SELECT Username FROM Admins WHERE AdminID = :id";
+                $queryid = $pdo->prepare($sqlid);
+                $queryid->bindParam(':id', $pilot['AdminID']);
+                $queryid->execute();
+                $author = ($queryid->fetch())[0];
+                ?>
+                <div class="col-md-4 mt-3">
+                    <div class="card text-white bg-dark" style="min-width: 150px;">
+                        <div class="card-body">
+                            <img src="<?= $pilot['Filepath'] ?>" class="card-img-top mx-auto d-block" alt="ID: <?= $pilot['ExampleID'] ?>" style="max-width: 100px;">
+                            <p>Uploaded by: <?= $author ?></p>
+                            <a class="btn btn-outline-danger" href="remove_product.php?type=pilot&id=<?= $pilot['ExampleID'] ?>">
+                <i class="fas fa-trash"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <a class="btn btn-outline-success mt-3" href="add_pilot.php">Add Image</a>
     </div>
 
 </main>
