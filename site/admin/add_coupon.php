@@ -95,7 +95,7 @@ include "head.php";
         </div>
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-success">Upload</button>
-            <a href="pilot.php" class="btn btn-outline-primary"><i class="fas fa-arrow-left"></i> Go Back</a>
+            <a href="coupons.php" class="btn btn-outline-primary"><i class="fas fa-arrow-left"></i> Go Back</a>
         </div>
 
     </form>

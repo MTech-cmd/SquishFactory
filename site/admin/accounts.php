@@ -21,7 +21,7 @@ include "head.php";
                 <a class="btn btn-info" href="home.php">Home</a>
                 <a class="btn btn-info" href="products.php">Products</a>
                 <a class="btn btn-info" href="pilot.php">Landing Page</a>
-                <a class="btn btn-info disabled" href="coupons.php">Coupons</a>
+                <a class="btn btn-info" href="coupons.php">Coupons</a>
                 <a class="btn btn-info" href="orders.php">Orders</a>
                 <a class="btn btn-outline-info" href="accounts.php">Accounts</a>
             </li>

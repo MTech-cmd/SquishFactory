@@ -25,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             $typeid = "ExampleID";
             $location = "Location: pilot.php";
             break;
+        case 'coupon':
+            $type = "Coupons";
+            $typeid = "CouponID";
+            $location = "Location: coupons.php";
+            break;
         default:
             $location = "Location: products.php";
             break;

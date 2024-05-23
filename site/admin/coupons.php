@@ -77,7 +77,7 @@ include "head.php";
                 } else {
                     $euro = substr($coupon['Amount'], 0, -2);
                     $cent = substr($coupon['Amount'], -2);
-                    $total = $euro . "," . $cent;
+                    $total = "€" . $euro . "," . $cent;
                 }
                 ?>
                 <div class="col-md-4 mt-3">
