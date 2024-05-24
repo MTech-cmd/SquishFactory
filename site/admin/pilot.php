@@ -86,6 +86,7 @@ include "head.php";
             <?php } ?>
         </div>
         <a class="btn btn-outline-success mt-3" href="add_pilot.php">Add Image</a>
+        <a class="btn btn-outline-primary mt-3" href="imager.php">Create New</a>
     </div>
 
 </main>

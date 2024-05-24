@@ -68,7 +68,7 @@ include "head.php";
             </div>
         </div>
         <!-- Main Content -->
-        <div class="container-fluid mt-3 ms-2">
+        <div class="container-fluid">
             <div class="row">
                 <?php if (!empty($mellows)) { ?>
                 <div class="col-12">

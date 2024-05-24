@@ -64,7 +64,7 @@ include "head.php";
         </div>
     </div>
     <!-- Main Content -->
-    <div class="container-fluid">
+    <div class="container">
     <div class="row">
             <?php foreach ($data as $coupon) {
                 $sqlid = "SELECT Username FROM Admins WHERE AdminID = :id";
@@ -81,16 +81,15 @@ include "head.php";
                 }
                 ?>
                 <div class="col-md-4 mt-3">
-                    <div class="card text-white bg-dark">
+                    <div class="card text-white bg-dark" style="min-width: 200px;">
                         <div class="card-body">
                             <p><?= $coupon['Code'] ?></p>
                             <p>Uploaded by: <?= $author ?></p>
                             <p>Status: <?= $coupon['Status'] ?></p>
                             <p><?= $total ?></p>
-                            <a class="btn btn-outline-danger" href="remove_product.php?type=pilot&id=<?= $pilot['ExampleID'] ?>">
+                            <a class="btn btn-outline-danger" href="remove_product.php?type=coupon&id=<?= $coupon['CouponID'] ?>">
                             <i class="fas fa-trash"></i> Delete</a>
-
-                            <a class="btn btn-outline-primary" href="remove_product.php?type=pilot&id=<?= $pilot['ExampleID'] ?>">Edit</a>
+                            <a class="btn btn-outline-primary" href="edit_coupon.php?id=<?= $coupon['CouponID'] ?>">Edit</a>
                         </div>
                     </div>
                 </div>
