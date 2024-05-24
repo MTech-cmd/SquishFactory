@@ -1,63 +1,56 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const mellowContainer = document.getElementById("mellow-container");
-    const mellowImage = document.getElementById("mellow-image");
-    const accessoryImage = document.getElementById("accessory-image");
-    const mellowColorSelect = document.getElementById("mellow-color");
-    const accessorySelect = document.getElementById("accessory-type");
-    const generateImageButton = document.getElementById("generate-image");
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+document.addEventListener('DOMContentLoaded', (event) => {
+    const accessory = document.getElementById('accessory');
+    let offsetX, offsetY;
+    let isDragging = false;
 
-    mellowColorSelect.addEventListener("change", function () {
-        const selectedColor = mellowColorSelect.value;
-        mellowImage.src = `../assets/base-mellows/alpha/${selectedColor}.png`;
+    accessory.addEventListener('click', (e) => {
+        if (!isDragging) {
+            offsetX = e.clientX - parseInt(window.getComputedStyle(accessory).left);
+            offsetY = e.clientY - parseInt(window.getComputedStyle(accessory).top);
+            document.addEventListener('mousemove', mouseMoveHandler);
+            isDragging = true;
+        } else {
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            isDragging = false;
+        }
     });
 
-    accessorySelect.addEventListener("change", function () {
-        const selectedAccessory = accessorySelect.value;
-        accessoryImage.src = `../assets/accessories/${selectedAccessory}.png`;
-    });
-
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
+    function mouseMoveHandler(e) {
+        accessory.style.left = (e.clientX - offsetX) + 'px';
+        accessory.style.top = (e.clientY - offsetY) + 'px';
     }
+});
 
-    mellowContainer.addEventListener("dragover", function (ev) {
-        ev.preventDefault();
-    });
+document.getElementById('generate-button').addEventListener('click', () => {
+    const baseImage = document.getElementById('base-image');
+    const accessory = document.getElementById('accessory');
+    const resultContainer = document.getElementById('result');
 
-    mellowContainer.addEventListener("drop", function (ev) {
-        ev.preventDefault();
-        const data = ev.dataTransfer.getData("text");
-        const draggableElement = document.getElementById(data);
-        const offsetX = ev.clientX - mellowContainer.offsetLeft;
-        const offsetY = ev.clientY - mellowContainer.offsetTop;
-        draggableElement.style.position = "absolute";
-        draggableElement.style.left = offsetX + "px";
-        draggableElement.style.top = offsetY + "px";
-    });
+    // Create a canvas with the same size as the images container
+    const container = document.getElementById('base-image-container');
+    const canvas = document.createElement('canvas');
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    const ctx = canvas.getContext('2d');
 
-    generateImageButton.addEventListener("click", function () {
-        const mellowBounds = mellowContainer.getBoundingClientRect();
-        const accessoryBounds = accessoryImage.getBoundingClientRect();
+    // Get the position of the accessory
+    const accessoryX = parseInt(accessory.style.left) || 0;
+    const accessoryY = parseInt(accessory.style.top) || 0;
 
-        canvas.width = mellowBounds.width;
-        canvas.height = mellowBounds.height;
+    // Draw the accessory image
+    ctx.drawImage(accessory, accessoryX, accessoryY);
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw the base image in the center
+    const baseImageX = (container.clientWidth - baseImage.width) / 2;
+    const baseImageY = (container.clientHeight - baseImage.height) / 2;
+    ctx.drawImage(baseImage, baseImageX, baseImageY);
 
-        ctx.drawImage(mellowImage, 0, 0, mellowBounds.width, mellowBounds.height);
-
-        const offsetX = accessoryBounds.left - mellowBounds.left;
-        const offsetY = accessoryBounds.top - mellowBounds.top;
-
-        ctx.drawImage(accessoryImage, offsetX, offsetY, accessoryBounds.width, accessoryBounds.height);
-
-        // Convert canvas to image and display or do further processing
-        const imageURL = canvas.toDataURL();
-        const generatedImage = new Image();
-        generatedImage.src = imageURL;
-
-        document.body.appendChild(generatedImage);
-    });
+    // Get the final image data URL and display it
+    const finalImage = canvas.toDataURL('image/png');
+    const img = new Image();
+    img.src = finalImage;
+    img.style.maxWidth = '100%'; // Ensure the generated image respects the container's width
+    img.style.maxHeight = '100%'; // Ensure the generated image respects the container's height
+    resultContainer.innerHTML = '';
+    resultContainer.appendChild(img);
 });
