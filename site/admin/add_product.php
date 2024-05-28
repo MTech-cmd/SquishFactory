@@ -83,7 +83,7 @@ include "head.php";
             <label for="image" class="form-label">Image:</label>
             <input type="file" class="form-control" id="image" name="image">
             <div class="alert alert-warning mt-2">
-                <p class="mb-0">A standard Mellow's picture size is 1340x1560. It is advised to use this ratio.</p>
+                <p class="mb-0">A standard Mellow's picture size is 400x500. It is advised to use this size relatively.</p>
             </div>
             <?php switch ($_SESSION['skillissue']) { 
                 case "allfields": 
