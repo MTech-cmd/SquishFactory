@@ -76,7 +76,7 @@ include "head.php";
                 <div class="col-md-4 mt-3">
                     <div class="card text-white bg-dark" style="min-width: 150px;">
                         <div class="card-body">
-                            <img src="<?= $pilot['Filepath'] ?>" class="card-img-top mx-auto d-block" alt="ID: <?= $pilot['ExampleID'] ?>" style="max-width: 100px;">
+                            <img src="../<?= $pilot['Filepath'] ?>" class="card-img-top mx-auto d-block" alt="ID: <?= $pilot['ExampleID'] ?>" style="max-width: 100px;">
                             <p>Uploaded by: <?= $author ?></p>
                             <a class="btn btn-outline-danger" href="remove_product.php?type=pilot&id=<?= $pilot['ExampleID'] ?>">
                 <i class="fas fa-trash"></i> Delete</a>

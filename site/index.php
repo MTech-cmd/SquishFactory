@@ -1,5 +1,11 @@
 <?php
 
+require "connector.php";
+
+$sqlExample = "SELECT Filepath FROM Examples";
+$queryExample = $pdo->query($sqlExample);
+$examples = $queryExample->fetch();
+
 include 'head.php';
 ?>
 
@@ -19,15 +25,11 @@ include 'head.php';
                     <div class="carousel-item active">
                         <img src="assets/examples/default.png" class="d-block mx-auto w-25" alt="Red Mellow with headphones">
                     </div>
-                    <!-- TODO: Port to PDO -->
-                    <!-- TODO: Set fixed img size -->
-                    <?php foreach (scandir('assets/examples') as $exampleMellow) {
-                        if ($exampleMellow != '.' && $exampleMellow != '..' && $exampleMellow != 'default.png') { ?>
+                    <?php foreach ($examples as $exampleMellow) { ?>
                         <div class="carousel-item">
-                            <img src="assets/examples/<?= $exampleMellow ?>" class="d-block mx-auto w-25" alt="Example Mellow: <?= $exampleMellow ?>">
+                            <img src="./<?= $exampleMellow ?>" class="d-block mx-auto w-25" alt="Example Mellow: <?= $exampleMellow ?>">
                         </div>
-                        <?php } 
-                    } ?>
+                    <?php } ?>
             </div>
             <div class="carousel-caption d-none d-md-block">
                 <a href="#" class="btn btn-info mx-4">Customize Now!</a>

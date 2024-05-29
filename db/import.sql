@@ -7,8 +7,8 @@ USE SquishFactory;
 CREATE TABLE `Mellows`
 (
     ProductID MEDIUMINT   NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
-    Name      VARCHAR(60) NOT NULL,
-    Price     MEDIUMINT   NOT NULL,
+    Name      VARCHAR(60) NULL,
+    Price     MEDIUMINT   NULL,
     Custom    BOOL        NOT NULL DEFAULT 1,
     Filepath  TEXT        NOT NULL UNIQUE
 );
@@ -48,6 +48,17 @@ CREATE TABLE `Examples`
     FOREIGN KEY (AdminID) REFERENCES Admins (AdminID)
 );
 
+CREATE TABLE `Coupons`
+(
+    CouponID   MEDIUMINT                           NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    Amount     MEDIUMINT                           NOT NULL,
+    Percentage BOOL                                NOT NULL DEFAULT 0,
+    Code       VARCHAR(255)                        NOT NULL UNIQUE,
+    Status     ENUM ('Open', 'Closed', 'One-time') NOT NULL DEFAULT 'Open',
+    AdminID    MEDIUMINT                           NOT NULL,
+    FOREIGN KEY (AdminID) REFERENCES Admins (AdminID)
+);
+
 CREATE TABLE `Orders`
 (
     OrderID         MEDIUMINT                                            NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
@@ -59,22 +70,23 @@ CREATE TABLE `Orders`
     Phone           VARCHAR(30)                                          NOT NULL,
     OrderDate       DATE                                                 NOT NULL,
     Status          ENUM ('Pending', 'Accepted', 'Shipped', 'Delivered') NOT NULL,
-    Filepath        TEXT                                                 NULL UNIQUE,
+    Price           INT                                                  NOT NULL,
     ProductID       MEDIUMINT                                            NOT NULL,
     AccessoryID     MEDIUMINT                                            NULL,
     UserID          MEDIUMINT                                            NULL,
+    CouponID        MEDIUMINT                                            NULL,
     FOREIGN KEY (ProductID) REFERENCES Mellows (ProductID),
     FOREIGN KEY (AccessoryID) REFERENCES Accessories (AccessoryID),
-    FOREIGN KEY (UserID) REFERENCES Users (UserID)
+    FOREIGN KEY (UserID) REFERENCES Users (UserID),
+    FOREIGN KEY (CouponID) REFERENCES Coupons (CouponID)
 );
 
-CREATE TABLE `Coupons`
+CREATE TABLE `Cart`
 (
-    CouponID   MEDIUMINT                           NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
-    Amount     MEDIUMINT                           NOT NULL,
-    Percentage BOOL                                NOT NULL DEFAULT 0,
-    Code       VARCHAR(255)                        NOT NULL UNIQUE,
-    Status     ENUM ('Open', 'Closed', 'One-time') NOT NULL DEFAULT 'Open',
-    AdminID    MEDIUMINT                           NOT NULL,
-    FOREIGN KEY (AdminID) REFERENCES Admins (AdminID)
+    CartID    MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+    Amount    MEDIUMINT NULL DEFAULT 1,
+    UserID    MEDIUMINT NOT NULL,
+    ProductID MEDIUMINT NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Mellows (ProductID),
+    FOREIGN KEY (UserID) REFERENCES Users (UserID)
 );

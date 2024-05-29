@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $query = $pdo->prepare($sql);
         $query->bindParam(':name', $name);
         $query->bindParam(':price', $price, PDO::PARAM_INT);
+        $targetFile = substr($targetFile, 2);
         $query->bindParam(':image', $targetFile);
         $query->execute();
 

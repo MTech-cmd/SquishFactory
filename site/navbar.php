@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+if (isset($_SESSION['UserID'])) {
+    $UserLoggedIn = true;
+} else {
+    $UserLoggedIn = false;
+}
+?>
+
 <nav class="navbar navbar-expand-md px-2 bg-nav" data-bs-theme="dark">
     <div class="container-fluid">
         <!-- Left side -->
@@ -20,7 +30,6 @@
             <ul class="navbar-nav justify-content-around ">
                 
                 <!-- Right side -->
-                <!-- TODO: Log in verify -->
                 <?php if ($UserLoggedIn) { ?>
                     <li class="nav-item dropdown">
                         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="dropdown">

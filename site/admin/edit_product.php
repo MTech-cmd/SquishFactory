@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Update the filepath in the database
         $sql = "UPDATE {$type} SET Filepath = :filepath WHERE {$typeid} = :id";
         $query = $pdo->prepare($sql);
+        $filename = substr($filename, 2);
         $query->bindParam(':filepath', $filename);
         $query->bindParam(':id', $_GET['id']);
         $query->execute();
@@ -125,7 +126,7 @@ include "head.php";
                 unset($_SESSION['skillissue']);
             } ?>
         </div>
-        <img src="<?= $product['Filepath'] ?>" alt="Product Image" class="img-fluid mt-2" style="max-width: 100px;">
+        <img src="../<?= $product['Filepath'] ?>" alt="Product Image" class="img-fluid mt-2" style="max-width: 100px;">
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-success">Edit</button>
             <a href="remove_product.php?type=<?= $_GET['type'] ?>&id=<?= $product[$typeid] ?>" class="btn btn-outline-danger">

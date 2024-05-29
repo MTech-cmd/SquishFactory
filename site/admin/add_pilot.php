@@ -22,18 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $targetFile = $targetDir . uniqid() . "_" . basename($_FILES['image']['name']);
         if (!in_array($_FILES['image']['type'], $supportedTypes)) {
             $_SESSION['skillissue'] = "filetype";
-            header("Location: add_product.php");
+            header("Location: add_pilot.php");
             die;
         }
         if ($_FILES['image']['size'] > $maxFileSize) {
             $_SESSION['skillissue'] = "filesize";
-            header("Location: add_product.php");
+            header("Location: add_pilot.php");
             die;
         }
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
         
         $sql = "INSERT INTO Examples (Filepath, AdminID) VALUES (:image, :id)";
         $query = $pdo->prepare($sql);
+        $targetFile = substr($targetFile, 2);
         $query->bindParam(':image', $targetFile);
         $query->bindParam(':id', $_SESSION['AdminID'], PDO::PARAM_INT);
         $query->execute();
@@ -92,6 +93,6 @@ include "head.php";
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    header("Location: add_product.php");
+    header("Location: add_pilot.php");
     die;
 }
