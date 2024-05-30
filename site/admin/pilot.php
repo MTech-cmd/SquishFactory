@@ -71,7 +71,7 @@ include "head.php";
                 $queryid = $pdo->prepare($sqlid);
                 $queryid->bindParam(':id', $pilot['AdminID']);
                 $queryid->execute();
-                $author = ($queryid->fetch())[0];
+                $author = ($queryid->fetch(PDO::FETCH_NUM))[0];
                 ?>
                 <div class="col-md-4 mt-3">
                     <div class="card text-white bg-dark" style="min-width: 150px;">

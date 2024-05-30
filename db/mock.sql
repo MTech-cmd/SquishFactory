@@ -9,3 +9,13 @@ VALUES ('Devil Horns', 1500, '/assets/accessories/devil_horns.png'),
        ('Headphones', 500, '/assets/accessories/headphones.png'),
        ('Shroom Hat', 2000, '/assets/accessories/shroom_hat.png'),
        ('Shroom Horns', 1500, '/assets/accessories/shrooms.png');
+
+INSERT INTO `Mellows` (Name, Price, Filepath)
+VALUES ('Arielis', 42000, '/assets/custom-mellows/arielis.png'),
+       ('Harley', 2000, '/assets/custom-mellows/harley.png'),
+       ('Le Shroom', 2000, '/assets/custom-mellows/shroom.png');
+
+INSERT INTO `Examples` (Filepath, AdminID)
+VALUES ('/assets/landing/alpha.png', 1),
+       ('/assets/landing/bravo.png', 1),
+       ('/assets/landing/harley.png', 1);
