@@ -1,42 +1,47 @@
-function getCurrentSelectedRadio(callback) {
-    // Select all radio buttons with the name 'btnradio'
-    const radioButtons = document.querySelectorAll('input[name="btnradio"]');
+const baseImage = document.getElementById("base-image");
+const accessoryImage = document.getElementById("accessory");
+const colorButtons = document.querySelectorAll(".dropdown-item");
+const bodyTypeRadios = document.querySelectorAll("input[name='btnradio']");
+const accessorySelect = document.querySelector(".form-select");
+const generateButton = document.getElementById("generate-button");
 
-    // Iterate through the NodeList to find the checked radio button
-    let selectedRadio = null;
-    radioButtons.forEach((radio) => {
-        if (radio.checked) {
-            selectedRadio = {
-                id: radio.id,
-                label: document.querySelector(`label[for="${radio.id}"]`).textContent
-            };
-        }
-    });
+let selectedColor = "red";
+let selectedBodyType = "charlie";
+let selectedAccessory = `..${accessorySelect.value}`;
 
-    // Invoke the callback function with the selected radio button
-    if (callback && typeof callback === 'function') {
-        callback(selectedRadio);
-    }
-
-    return selectedRadio;
+// Function to update images
+function updateImages() {
+    baseImage.src = `../assets/base-mellows/${selectedBodyType}/${selectedColor}.png`;
+    accessoryImage.src = selectedAccessory;
 }
 
-// Example usage:
-function onRadioChange(selectedRadio) {
-    if (selectedRadio) {
-        console.log("Selected radio button ID:", selectedRadio.id);
-        console.log("Selected radio button label:", selectedRadio.label);
-    } else {
-        console.log("No radio button is selected.");
-    }
-}
-
-// Initial invocation
-getCurrentSelectedRadio(onRadioChange);
-
-// Event listener to invoke the function whenever a radio button is clicked
-document.querySelectorAll('input[name="btnradio"]').forEach((radio) => {
-    radio.addEventListener('change', () => {
-        getCurrentSelectedRadio(onRadioChange);
+// Event listeners for color buttons
+colorButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        selectedColor = button.id;
+        updateImages();
     });
 });
+
+// Event listeners for body type radio buttons
+bodyTypeRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
+        selectedBodyType = radio.id;
+        updateImages();
+    });
+});
+
+// Event listener for accessory select
+accessorySelect.addEventListener("change", function () {
+    selectedAccessory = `..${accessorySelect.value}`;
+    updateImages();
+});
+
+// Generate button click event
+generateButton.addEventListener("click", function () {
+    updateImages();
+});
+
+// Initial image update
+updateImages();
+

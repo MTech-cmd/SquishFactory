@@ -54,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         $query->execute();
 
     // Delete the product image if it exists
-    if (file_exists($product['Filepath'])) {
-        unlink($product['Filepath']);
+    $targetFile = "..{$product['Filepath']}";
+    if (file_exists($targetFile)) {
+        unlink($targetFile);
     }
         $_SESSION['success'] = "Product deleted successfully";
         header($location);
