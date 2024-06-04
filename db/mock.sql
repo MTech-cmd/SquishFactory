@@ -11,8 +11,8 @@ VALUES ('Devil Horns', 1500, '/assets/accessories/devil_horns.png'),
        ('Shroom Horns', 1500, '/assets/accessories/shrooms.png');
 
 INSERT INTO `Mellows` (Name, Price, Filepath)
-VALUES ('Arielis', 42000, '/assets/custom-mellows/arielis.png'),
-       ('Harley', 2000, '/assets/custom-mellows/harley.png'),
+VALUES ('Arielis The Axolotl', 42000, '/assets/custom-mellows/arielis.png'),
+       ('Harley The Strawberry Milk Cow', 2000, '/assets/custom-mellows/harley.png'),
        ('Le Shroom', 2000, '/assets/custom-mellows/shroom.png');
 
 INSERT INTO `Examples` (Filepath, AdminID)

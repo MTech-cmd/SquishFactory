@@ -1,34 +1,31 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    const accessory = document.getElementById('accessory');
-    if (!accessory) {
-        console.error('Element with ID "accessory" not found.');
-        return;
-    }
+const accessory = document.getElementById('accessory');
+if (!accessory) {
+    console.error('Element with ID "accessory" not found.');
+}
 
-    let offsetX, offsetY;
-    let isDragging = false;
+let offsetX,
+    offsetY;
+let isDragging = false;
 
-    accessory.addEventListener('click', (e) => {
-        if (!isDragging) {
-            offsetX = e.clientX - parseInt(window.getComputedStyle(accessory).left, 10);
-            offsetY = e.clientY - parseInt(window.getComputedStyle(accessory).top, 10);
-            document.addEventListener('mousemove', mouseMoveHandler);
-            isDragging = true;
-        } else {
-            document.removeEventListener('mousemove', mouseMoveHandler);
-            isDragging = false;
-        }
-    });
-
-    function mouseMoveHandler(e) {
-        accessory.style.left = (e.clientX - offsetX) + 'px';
-        accessory.style.top = (e.clientY - offsetY) + 'px';
+accessory.addEventListener('click', (e) => {
+    if (!isDragging) {
+        offsetX = e.clientX - parseInt(window.getComputedStyle(accessory).left, 10);
+        offsetY = e.clientY - parseInt(window.getComputedStyle(accessory).top, 10);
+        document.addEventListener('mousemove', mouseMoveHandler);
+        isDragging = true;
+    } else {
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        isDragging = false;
     }
 });
 
+function mouseMoveHandler(e) {
+    accessory.style.left = (e.clientX - offsetX) + 'px';
+    accessory.style.top = (e.clientY - offsetY) + 'px';
+}
+
 document.getElementById('generate-button').addEventListener('click', () => {
     const baseImage = document.getElementById('base-image');
-    const accessory = document.getElementById('accessory');
     const resultContainer = document.getElementById('result');
 
     if (!baseImage || !accessory || !resultContainer) {
@@ -71,7 +68,7 @@ document.getElementById('upload-btn').addEventListener('click', () => {
 });
 
 function uploadImage(imageDataUrl) {
-    console.log('Uploading image,');
+    const accessoryPath = document.getElementById('accessory').src;
 
     const byteString = atob(imageDataUrl.split(',')[1]);
     const mimeString = imageDataUrl.split(',')[0].split(':')[1].split(';')[0];
@@ -86,14 +83,13 @@ function uploadImage(imageDataUrl) {
 
     const formData = new FormData();
     formData.append('image', blob, 'generated.png');
+    formData.append('path', accessoryPath);
 
     for (let pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
 
     const uploadPath = 'upload.php';
-
-    console.log('Upload path:', uploadPath);
 
     fetch(uploadPath, {
         method: 'POST',

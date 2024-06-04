@@ -2,9 +2,23 @@
 
 require "connector.php";
 
+$cardStyles = ['primary', 'dark', 'info', 'light', 'danger', 'warning', 'secondary'];
+
+function priceFix($price)
+{
+    $euro = substr($price, 0, -2);
+    $cent = substr($price, -2);
+    return "€" . $euro . "," . $cent;
+}
+
+
 $sqlExample = "SELECT Filepath FROM Examples";
 $queryExample = $pdo->query($sqlExample);
 $examples = $queryExample->fetchAll(PDO::FETCH_NUM);
+
+$sqlCustom = "SELECT * FROM Mellows WHERE Custom = 1";
+$queryCustom = $pdo->query($sqlCustom);
+$customMellows = $queryCustom->fetchAll();
 
 include 'head.php';
 ?>
@@ -20,7 +34,8 @@ include 'head.php';
             <?php include 'navbar.php'; ?>
 
             <!-- Start Main Slideshow-->
-            <div id="carouselExampleSlidesOnly" class="carousel slide bg-nav" data-bs-ride="carousel" data-bs-pause="false">
+            <div id="carouselExampleSlidesOnly" class="carousel slide bg-nav" data-bs-ride="carousel"
+                data-bs-pause="false">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="./assets/landing/default.png" class="d-block mx-auto w-25"
@@ -36,7 +51,7 @@ include 'head.php';
                     } ?>
                 </div>
                 <div class="carousel-caption d-none d-md-block">
-                    <a href="#" class="btn btn-info mx-4">Customize Now!</a>
+                    <a href="imager.php" class="btn btn-info mx-4">Customize Now!</a>
                 </div>
             </div>
             <!-- End Main Slideshow-->
@@ -44,22 +59,17 @@ include 'head.php';
 
         <main class="px-5">
             <h1 class="text-center mt-2">Custom Mellows</h1>
-            <?php foreach (scandir('assets/custom-mellows') as $customMellow) { 
-                if ($customMellow != '.' && $customMellow != '..') { ?>
-            <div class="card border-primary mb-3" style="max-width: 15rem;">
-                <div class="card-header">Custom Mellow</div>
-                <!-- TODO: Pull title from DB -->
-                <div class="card-body">
-                    <img src="assets/custom-mellows/<?= $customMellow ?>" class="card-img-top"
-                        alt="Custom Mellow: <?= $customMellow ?>">
+            <div class="d-flex">
+                <?php for ($i = 0; $i < sizeof($customMellows); $i++) { ?>
+                <div class="card border-<?= $cardStyles[$i] ?> m-3">
+                    <div class="card-header"><?= $customMellows[$i]['Name'] ?></div>
+                    <div class="card-body">
+                        <div class="card-img mb-1"><img src=".<?= $customMellows[$i]['Filepath'] ?>" style="max-width: 15rem;"></div>
+                        <div class="card-text"><a class="btn btn-success">Buy Now!</a> <?= priceFix($customMellows[$i]['Price']) ?></div>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <p class="card-text">Price: €<?= rand(10, 50) ?></p>
-                    <a class="btn btn-success d-flex justify-content-center" href="#">Buy Now!</a>
-                </div>
+                <?php } ?>
             </div>
-                <?php }
-            } ?>
         </main>
 
     </div>

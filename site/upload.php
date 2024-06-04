@@ -1,42 +1,39 @@
 <?php
 
 require "connector.php";
+
 session_start();
-// Ensure the script is receiving a POST request
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve the isAdmin flag
-    $isAdmin = isset($_POST['isAdmin']) ? filter_var($_POST['isAdmin'], FILTER_VALIDATE_BOOLEAN) : false;
-    // Check if the file was uploaded without any errors
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        // Define the directory where the file will be uploaded
-        if ($isAdmin) {
-            $uploadDir = "assets/landing/";
-            $sql = "INSERT INTO Examples (Filepath, AdminID) VALUES (:img, :id)";
-            $query = $pdo->prepare($sql);
-            $query->bindParam(':id', $_SESSION['AdminID']);
-        } else {
-            $uploadDir = "assets/cart/";
-            $sql = "INSERT INTO Mellows (Custom, Filepath) VALUES (:custom, :img)";
-            $query = $pdo->prepare($sql);
-            $query->bindParam(':custom', 0);
-        }
+function extractPath($url)
+{
+    $parsed_url = parse_url($url, PHP_URL_PATH);
+    $position = strpos($parsed_url, "/site");
+    return substr($parsed_url, $position + strlen("/site"));
+}
 
-        // Generate a unique name for the uploaded file
-        $targetFile = $uploadDir . uniqid('img_', true) . '.png';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    $path = extractPath($_POST['path']);
+    $sqlPrice = "SELECT Price FROM Accessories WHERE Filepath = :path";
+    $queryPrice = $pdo->prepare($sqlPrice);
+    $queryPrice->bindParam(':path', $path);
+    $queryPrice->execute();
+    $price = 1000 + $queryPrice->fetch(PDO::FETCH_NUM)[0]; // Base is always €10
 
-        // Move the uploaded file to the destination directory
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $query->bindParam(':img', $targetFile);
-            $query->execute();
+    $uploadDir = "./assets/cart/";
+    $targetFile = $uploadDir . uniqid('img_', true) . '.png';
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile) && isset($_SESSION['UserID'])) {
+        $sql = "INSERT INTO Mellows (Price, Custom, Filepath) VALUES (:price, 0, :img)";
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':price', $price);
+        $targetFile = substr($targetFile, 1);
+        $query->bindParam(':img', $targetFile);
+        $query->execute();
+        $productId = $pdo->lastInsertId();
 
-            if (!$isAdmin) {
-                $mellowId = $pdo->lastInsertId();
-                $sqlCart = "INSERT INTO Cart (UserID, ProductID) VALUES (:user, :mellow)";
-                $queryCart->prepare($sqlCart);
-                $queryCart->bindParam(':user', $_SESSION['UserID']);
-                $queryCart->bindParam(':mellow', $mellowId);
-            }
-        }
+        $sqlCart = "INSERT INTO Cart (UserID, ProductID) VALUES (:user, :product)";
+        $queryCart = $pdo->prepare($sqlCart);
+        $queryCart->bindParam(':user', $_SESSION['UserID']);
+        $queryCart->bindParam(':product', $productId);
+        $queryCart->execute();
     }
 }
 ?>
