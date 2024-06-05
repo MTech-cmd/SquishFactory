@@ -1,6 +1,7 @@
 <?php
 
 require "connector.php";
+session_start();
 
 $sql = "SELECT Name, Price, Filepath FROM Accessories";
 $query = $pdo->query($sql);
@@ -12,6 +13,7 @@ include "head.php";
 <head>
     <link rel="stylesheet" href="./stylesheets/dist/imager.css">
     <script src="./scripts/dist/selector-client.js" defer></script>
+    <title>My Mellow - Customizer</title>
 </head>
 
 <body>

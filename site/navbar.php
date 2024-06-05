@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 if (isset($_SESSION['UserID'])) {
     $UserLoggedIn = true;
 } else {
@@ -22,7 +21,7 @@ if (isset($_SESSION['UserID'])) {
         <div class="collapse navbar-collapse justify-content-between" id="navbarColor02">
             <!-- Collapsible content -->
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#">Custom Mellows</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php#scrollspy">Custom Mellows</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Merch (Coming Soon)</a></li>
                 <li class="nav-item"><a class="nav-link" href="imager.php">Customizer</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Source Code</a></li>
@@ -40,14 +39,14 @@ if (isset($_SESSION['UserID'])) {
                             <li><a class="dropdown-item" href="#">Orders</a></li>
                             <li><a class="dropdown-item" href="#">Coupons</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="btn btn-primary d-flex m-1 mb-0" href="#">Log out</a></li>
+                            <li><a class="btn btn-primary d-flex m-1 mb-0" href="logout.php">Log out</a></li>
                         </ul>
                         <li class="nav-item"><a href="#" class="btn ms-md-1 mt-md-0 mt-1 px-0">
                             <i class="fas fa-shopping-cart fa-md icon-link"></i>
                         </a></li>
                     </li>
                 <?php } else { ?>
-                        <li class="nav-item"><a href="#" class="btn btn-outline-primary">Login</a></li>
+                        <li class="nav-item"><a href="login.php" class="btn btn-outline-primary">Login</a></li>
                         <li class="nav-item"><a href="signup.php" class="btn btn-outline-success ms-md-1 mt-md-0 mt-1">Sign Up</a></li>
                 <?php } ?>
             </ul>

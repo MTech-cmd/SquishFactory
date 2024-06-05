@@ -69,7 +69,7 @@ CREATE TABLE `Orders`
     Email           VARCHAR(255)                                         NOT NULL,
     Phone           VARCHAR(30)                                          NOT NULL,
     OrderDate       DATE                                                 NOT NULL,
-    Status          ENUM ('Pending', 'Accepted', 'Shipped', 'Delivered') NOT NULL DEFAULT 'Pendi<input type="email" class="form-control" placeholder="Email Address">ng',
+    Status          ENUM ('Pending', 'Accepted', 'Shipped', 'Delivered') NOT NULL DEFAULT 'Pending',
     Price           INT                                                  NOT NULL,
     ProductID       MEDIUMINT                                            NOT NULL,
     AccessoryID     MEDIUMINT                                            NULL,

@@ -1,6 +1,7 @@
 <?php
 
 require "connector.php";
+session_start();
 
 $cardStyles = ['primary', 'dark', 'info', 'light', 'danger', 'warning', 'secondary'];
 
@@ -58,7 +59,7 @@ include 'head.php';
         </header>
 
         <main class="px-5">
-            <h1 class="text-center mt-2">Custom Mellows</h1>
+            <h1 class="text-center mt-2" id="scrollspy">Custom Mellows</h1>
             <div class="d-flex">
                 <?php for ($i = 0; $i < sizeof($customMellows); $i++) { ?>
                 <div class="card border-<?= $cardStyles[$i] ?> m-3">
