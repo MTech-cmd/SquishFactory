@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require "connector.php";
 // Ensure the script is receiving a POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

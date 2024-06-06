@@ -69,6 +69,7 @@ include "head.php";
         </div>
         <!-- Main Content -->
         <div class="container-fluid">
+            <a class="btn btn-outline-success mt-3" href="add_product.php">Add Product</a>
             <div class="row">
                 <?php if (!empty($mellows)) { ?>
                 <div class="col-12">
@@ -83,7 +84,7 @@ include "head.php";
                     <div class="card text-white bg-dark" style="min-width: 150px;">
                         <div class="card-header"><?= $mellow['Name'] ?></div>
                         <div class="text-center">
-                            <img src="../<?= $mellow['Filepath'] ?>" class="card-img-top mx-auto d-block"
+                            <img src="..<?= $mellow['Filepath'] ?>" class="card-img-top mx-auto d-block"
                                 alt="<?= $mellow['Name'] ?>" style="max-width: 100px;">
                         </div>
                         <div class="card-body">
@@ -110,7 +111,7 @@ include "head.php";
                     <div class="card text-white bg-dark" style="min-width: 150px;">
                         <div class="card-header"><?= $accessory['Name'] ?></div>
                         <div class="text-center">
-                            <img src="../<?= $accessory['Filepath'] ?>" class="card-img-top mx-auto d-block"
+                            <img src="..<?= $accessory['Filepath'] ?>" class="card-img-top mx-auto d-block"
                                 alt="<?= $accessory['Name'] ?>" style="max-width: 100px;">
                         </div>
                         <div class="card-body">
@@ -123,7 +124,6 @@ include "head.php";
                 <?php } ?>
             </div>
 
-            <a class="btn btn-outline-success mt-3" href="add_product.php">Add Product</a>
         </div>
 
     </main>

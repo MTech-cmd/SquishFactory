@@ -3,10 +3,25 @@
 require "connector.php";
 session_start();
 
+if (!isset($_SESSION['skillissue'])) {
+    $_SESSION['skillissue'] = null;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "SELECT * FROM Users WHERE Username = :username";
     $query = $pdo->prepare($sql);
-    $query->bindParam(':username', $_POST['username'])
+    $query->bindParam(':username', $_POST['username']);
+    $query->execute();
+    $user = $query->fetch();
+
+    if (password_verify($_POST['password'], $user['Password'])) {
+        $_SESSION['UserID'] = $user['UserID'];
+        $_SESSION['skillissue'] = null;
+        header("Location: index.php");
+        die();
+    } else {
+        $_SESSION['skillissue'] = 'login_user';
+    }
 
     header("Location: login.php");
     die();

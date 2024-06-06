@@ -3,6 +3,10 @@
 require "connector.php";
 session_start();
 
+if (!isset($_SESSION['skillissue'])) {
+    $_SESSION['skillissue'] = null;
+}
+
 function skillissue($arr)
 {
     if (strlen($arr['firstName']) > 60 || empty($arr['firstName'])) {

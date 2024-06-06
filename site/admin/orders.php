@@ -45,7 +45,7 @@ include "head.php";
         </div>
         <div class="offcanvas-body m-auto">
             <li class="btn-group-vertical align-items-center">
-                <a class="btn btn-outline-info" href="home.php">Home</a>
+                <a class="btn btn-info" href="home.php">Home</a>
                 <a class="btn btn-info" href="products.php">Products</a>
                 <a class="btn btn-info" href="pilot.php">Landing Page</a>
                 <a class="btn btn-info" href="coupons.php">Coupons</a>
@@ -60,7 +60,7 @@ include "head.php";
     <!-- Main Content -->
     <div class="container-fluid">
         <h1 class="text-white">Welcome Admin!</h1>
-        <p class="text-white">There are no new orders today :)</p>
+        <p class="text-white">There are no orders :)</p>
     </div>
 
 </main>

@@ -1,10 +1,16 @@
 <?php
 
+require "connector.php";
+
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
     die;
 }
+
+$sql = "SELECT Username, Email, UserID FROM Users";
+$query = $pdo->query($sql);
+$accounts = $query->fetchAll();
 
 include "head.php";
 ?>
@@ -59,8 +65,16 @@ include "head.php";
     </div>
     <!-- Main Content -->
     <div class="container-fluid">
-        <h1 class="text-white">Welcome Admin!</h1>
-        <p class="text-white">There are no new orders today :)</p>
+    
+        <?php foreach ($accounts as $account) { ?>
+            <div class="card bg-dark text-white my-3">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $account['Username']; ?></h5>
+                    <p class="card-text"><?php echo $account['Email']; ?></p>
+                    <a href="remove_account.php?id=<?= $account['UserID'] ?>" class="btn btn-outline-danger">Remove</a>
+                </div>
+            </div>
+        <?php } ?>
     </div>
 
 </main>

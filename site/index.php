@@ -12,7 +12,6 @@ function priceFix($price)
     return "€" . $euro . "," . $cent;
 }
 
-
 $sqlExample = "SELECT Filepath FROM Examples";
 $queryExample = $pdo->query($sqlExample);
 $examples = $queryExample->fetchAll(PDO::FETCH_NUM);
@@ -31,7 +30,6 @@ include 'head.php';
 <body class="d-flex flex-column">
     <div class="d-block">
         <header>
-
             <?php include 'navbar.php'; ?>
 
             <!-- Start Main Slideshow-->
@@ -58,21 +56,27 @@ include 'head.php';
             <!-- End Main Slideshow-->
         </header>
 
-        <main class="px-5">
+        <main class="px-2 px-md-5">
             <h1 class="text-center mt-2" id="scrollspy">Custom Mellows</h1>
-            <div class="d-flex">
+            <div class="row">
                 <?php for ($i = 0; $i < sizeof($customMellows); $i++) { ?>
-                <div class="card border-<?= $cardStyles[$i] ?> m-3">
-                    <div class="card-header"><?= $customMellows[$i]['Name'] ?></div>
-                    <div class="card-body">
-                        <div class="card-img mb-1"><img src=".<?= $customMellows[$i]['Filepath'] ?>" style="max-width: 15rem;"></div>
-                        <div class="card-text"><a class="btn btn-success">Buy Now!</a> <?= priceFix($customMellows[$i]['Price']) ?></div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="m-0 mb-2 card border-<?= $cardStyles[$i] ?>">
+                        <div class="card-header"><?= $customMellows[$i]['Name'] ?></div>
+                        <div class="card-body">
+                            <div class="card-img mb-1">
+                                <img src=".<?= $customMellows[$i]['Filepath'] ?>"
+                                    style="max-width: 15rem;">
+                            </div>
+                            <div class="card-text">
+                                <a class="btn btn-success">Buy Now!</a> <?= priceFix($customMellows[$i]['Price']) ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <?php } ?>
             </div>
         </main>
-
     </div>
     <?php include 'footer.php'; ?>
 </body>

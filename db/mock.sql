@@ -19,3 +19,7 @@ INSERT INTO `Examples` (Filepath, AdminID)
 VALUES ('/assets/landing/alpha.png', 1),
        ('/assets/landing/bravo.png', 1),
        ('/assets/landing/harley.png', 1);
+
+INSERT INTO `Users` (FirstName, LastName, BillingAddress, Phone, Email, Username, Password)
+VALUES ('John', 'Doe', 'Lane Avenue 27', '+31 6 12345678', 'test@domain.com', 'Johnny', '$2y$10$3ihg0B/O4fWRI4g8I3zf1eeGfLkJhDWT0NyGQFrExOpC5cOdGGu3O');
+
