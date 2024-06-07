@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
-    die;
+    die();
 }
 
 require "../connector.php";

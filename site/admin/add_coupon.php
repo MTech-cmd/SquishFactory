@@ -25,7 +25,7 @@ if (!isset($_SESSION['skillissue'])) {
 
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
-    die;
+    die();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $query->execute();
 
         header("Location: coupons.php");
-        die;
+        die();
     }
 }
 
@@ -106,5 +106,5 @@ include "head.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     header("Location: add_coupon.php");
-    die;
+    die();
 }

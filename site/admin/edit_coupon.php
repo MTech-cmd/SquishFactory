@@ -18,7 +18,7 @@ function randomCode($n)
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
-    die;
+    die();
 }
 
 require "../connector.php";
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (empty($_POST['amount'])) {
         $_SESSION['skillissue'] = "allfields";
         header("Location: {$_SERVER['REQUEST_URI']}");
-        die;
+        die();
     }
 
     $_SESSION['skillissue'] = null;
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $query->execute();
 
     header("Location: products.php");
-    die;
+    die();
 }
 
 include "head.php";

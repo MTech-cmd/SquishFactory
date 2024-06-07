@@ -8,7 +8,7 @@ if (!isset($_SESSION['skillissue'])) {
 
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
-    die;
+    die();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if (!in_array($_FILES['image']['type'], $supportedTypes)) {
             $_SESSION['skillissue'] = "filetype";
             header("Location: add_pilot.php");
-            die;
+            die();
         }
         if ($_FILES['image']['size'] > $maxFileSize) {
             $_SESSION['skillissue'] = "filesize";
             header("Location: add_pilot.php");
-            die;
+            die();
         }
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
         
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $query->execute();
 
         header("Location: pilot.php");
-        die;
+        die();
     }
 }
 
@@ -94,5 +94,5 @@ include "head.php";
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     header("Location: add_pilot.php");
-    die;
+    die();
 }

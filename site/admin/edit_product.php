@@ -8,7 +8,7 @@ function cleanInt($val)
 session_start();
 if (!isset($_SESSION['AdminID'])) {
     header("Location: login.php");
-    die;
+    die();
 }
 
 require "../connector.php";
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (empty($_POST['name']) || empty($_POST['price'])) {
         $_SESSION['skillissue'] = "allfields";
         header("Location: {$_SERVER['REQUEST_URI']}");
-        die;
+        die();
     }
 
     $price = cleanInt($_POST['price']);
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if ($_FILES['image']['size'] > 50000000) {
             $_SESSION['skillissue'] = "filesize";
             header("Location: {$_SERVER['REQUEST_URI']}");
-            die;
+            die();
         }
 
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if (!in_array($filetype, $allowed)) {
             $_SESSION['skillissue'] = "filetype";
             header("Location: {$_SERVER['REQUEST_URI']}");
-            die;
+            die();
         }
 
         $filename = "../assets/custom-mellows/" . uniqid() . "." . $filetype;
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $query->execute();
 
     header("Location: products.php");
-    die;
+    die();
 }
 
 include "head.php";

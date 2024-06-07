@@ -4,13 +4,13 @@ try {
     require "../connector.php";
 } catch (Exception $e) {
     echo "Connector File missing, terminating program\n{$e}\n";
-    die;
+    die();
 }
 
 $username = readline("Enter username: ");
 if (strlen($username) >= 60) {
     echo "Username must be less than 60 charachters";
-    die;
+    die();
 }
 $username = htmlspecialchars($username);
 $password = readline("\nEnter password: ");
