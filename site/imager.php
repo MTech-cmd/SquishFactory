@@ -3,6 +3,11 @@
 require "connector.php";
 session_start();
 
+if (!isset($_SESSION['UserID'])) {
+    header("Location: require_login.html");
+    die();
+}
+
 $sql = "SELECT Name, Price, Filepath FROM Accessories";
 $query = $pdo->query($sql);
 $accessories = $query->fetchAll();
@@ -23,7 +28,7 @@ include "head.php";
         <img id="accessory" src="#" alt="Accessory">
     </div>
     <button id="generate-button" class="btn btn-secondary">Generate Image</button>
-    <button id="upload-btn" class="btn btn-success">Upload</button>
+    <button id="upload-btn" class="btn btn-success">Add to cart!</button>
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="alpha" autocomplete="off" checked="">
         <label class="btn btn-outline-primary" for="alpha">Basic</label>

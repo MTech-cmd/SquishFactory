@@ -37,11 +37,10 @@ if (isset($_SESSION['UserID'])) {
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Orders</a></li>
-                            <li><a class="dropdown-item" href="#">Coupons</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="btn btn-primary d-flex m-1 mb-0" href="logout.php">Log out</a></li>
                         </ul>
-                        <li class="nav-item"><a href="#" class="btn ms-md-1 mt-md-0 mt-1 px-0">
+                        <li class="nav-item"><a href="cart.php" class="btn ms-md-1 mt-md-0 mt-1 px-0">
                             <i class="fas fa-shopping-cart fa-md icon-link"></i>
                         </a></li>
                     </li>
