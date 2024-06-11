@@ -1,5 +1,12 @@
 <?php
 
+function priceFix($price)
+{
+    $euro = substr($price, 0, -2);
+    $cent = substr($price, -2);
+    return "€" . $euro . "," . $cent;
+}
+
 session_start();
 require "connector.php";
 
@@ -8,9 +15,43 @@ if (!isset($_SESSION['UserID'])) {
     die();
 }
 
-$sql = "SELECT * FROM Mellows";
-$query = $pdo->query($sql);
-$mellows = $query->fetchAll();
+$total = 0;
+
+$sql = "SELECT * FROM Cart WHERE UserID = ?";
+$query = $pdo->prepare($sql);
+$query->execute([$_SESSION['UserID']]);
+$items = $query->fetchAll();
+
+if (isset($_GET['id'])) {
+    $sqlSel = "SELECT Amount FROM Cart WHERE UserID = :user AND ProductID = :mellow";
+    $querySel = $pdo->prepare($sqlSel);
+    $querySel->bindParam(':user', $_SESSION['UserID']);
+    $querySel->bindParam(':mellow', $_GET['id']);
+    $querySel->execute();
+    $amount = $querySel->fetch()['Amount'];
+
+    if ($_GET['stat'] == 'add') {
+        if ($amount == 0) {
+            $sqlMod = "INSERT INTO Cart (UserID, ProductID, Amount) VALUES (:user, :mellow, 1)";
+        } else {
+            $sqlMod = "UPDATE Cart SET Amount = Amount + 1 WHERE UserID = :user AND ProductID = :mellow";
+        }
+    } elseif ($_GET['stat'] == 'del') {
+        if ($amount > 1) {
+            $sqlMod = "UPDATE Cart SET Amount = Amount - 1 WHERE UserID = :user AND ProductID = :mellow";
+        } else {
+            $sqlMod = "DELETE FROM Cart WHERE UserID = :user AND ProductID = :mellow";
+        }
+    }
+
+    $queryMod = $pdo->prepare($sqlMod);
+    $queryMod->bindParam(':user', $_SESSION['UserID']);
+    $queryMod->bindParam(':mellow', $_GET['id']);
+    $queryMod->execute();
+
+    header("Location: cart.php");
+    die();
+}
 
 include 'head.php';
 ?>
@@ -23,20 +64,42 @@ include 'head.php';
     <?php include 'navbar.php'; ?>
     <div class="container mt-2">
         <h1>Cart</h1>
-        <div class="card border-primary">
-            <div class="card-header">Featured</div>
+
+        <?php if (empty($items)) { ?>
+        <div class="alert alert-warning" role="alert">
+            Your cart is empty.
+        </div>
+        <?php } else {
+            foreach ($items as $item) { 
+                $sqlMellows = "SELECT * FROM Mellows WHERE ProductID = ?";
+                $queryMellows = $pdo->prepare($sqlMellows);
+                $queryMellows->execute([$item['ProductID']]);
+                $mellow = $queryMellows->fetch();
+                $name = $mellow['Name'] ?? 'Your own imagination!';
+                $price = $mellow['Price'] * $item['Amount'];
+                $total += $price;
+                $price = priceFix($price);
+                ?>
+        <div class="card border-primary my-1">
+            <div class="card-header"><?= $name ?></div>
             <div class="card-body">
                 <div class="d-flex">
-                    <img src="assets/base-mellows/alpha/black.png" alt="..." class="me-3 mb-2" style="max-width: 100px;">
-                    <h2 class="m-auto">1</h2>
-                    <h2 class="m-auto">2</h2>
+                    <img src=".<?= $mellow['Filepath'] ?>" alt="<?= $name ?>" class="me-3 mb-2"
+                        style="max-width: 100px;">
+                    <h3 class="m-auto"><?= $price ?></h3>
                 </div>
                 <div class="d-flex">
-                    <a href="" class="btn btn-success me-3">+</a>
-                    <a href="" class="btn btn-primary">-</a>
+                    <a href="cart.php?id=<?= $item['ProductID'] ?>&stat=add" class="btn btn-success me-3">+</a>
+                    <a href="cart.php?id=<?= $item['ProductID'] ?>&stat=del" class="btn btn-primary">-</a>
+                    <h3 class="m-auto">Quantity: <?= $item['Amount'] ?></h3>
                 </div>
             </div>
         </div>
+            <?php }
+        } if ($total != 0) { ?>
+        <a href="checkout.php" class="btn btn-success">Checkout</a>
+        <p>Total: <?= priceFix($total) ?></p>
+        <?php } ?>
     </div>
     <?php include 'footer.php'; ?>
 </body>

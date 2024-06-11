@@ -71,12 +71,11 @@ CREATE TABLE `Orders`
     OrderDate       DATE                                                 NOT NULL,
     Status          ENUM ('Pending', 'Accepted', 'Shipped', 'Delivered') NOT NULL DEFAULT 'Pending',
     Price           INT                                                  NOT NULL,
+    Amount          INT                                                  NOT NULL DEFAULT 1,
     ProductID       MEDIUMINT                                            NOT NULL,
-    AccessoryID     MEDIUMINT                                            NULL,
     UserID          MEDIUMINT                                            NULL,
     CouponID        MEDIUMINT                                            NULL,
     FOREIGN KEY (ProductID) REFERENCES Mellows (ProductID),
-    FOREIGN KEY (AccessoryID) REFERENCES Accessories (AccessoryID),
     FOREIGN KEY (UserID) REFERENCES Users (UserID),
     FOREIGN KEY (CouponID) REFERENCES Coupons (CouponID)
 );

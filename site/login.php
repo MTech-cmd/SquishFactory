@@ -34,7 +34,7 @@ include "head.php";
     <title>My Mellow - Login</title>
 </head>
 
-<body>
+<body class="d-flex flex-column">
     <?php include "navbar.php" ?>
 
     <div class="container mt-2">
@@ -42,16 +42,19 @@ include "head.php";
         <form action="login.php" method="POST">
 
             <div class="form-floating">
-                <input type="text" class="form-control m-1 <?= $_SESSION['skillissue'] === 'login_user' ? 'is-invalid' : '' ?>" id="username" name="username" placeholder="Username"
-                    maxlength="60">
+                <input type="text"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'login_user' ? 'is-invalid' : '' ?>"
+                    id="username" name="username" placeholder="Username" maxlength="60" required>
                 <label for="username">Username</label>
                 <?php if ($_SESSION['skillissue'] === 'login_user') { ?>
-                    <div class="invalid-feedback">Wrong username or password</div>
+                <div class="invalid-feedback">Wrong username or password</div>
                 <?php } ?>
             </div>
 
             <div class="form-floating">
-                <input type="password" class="form-control m-1 <?= $_SESSION['skillissue'] === 'login_user' ? 'is-invalid' : '' ?>" id="password" name="password" placeholder="Password">
+                <input type="password"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'login_user' ? 'is-invalid' : '' ?>"
+                    id="password" name="password" placeholder="Password" required>
                 <label for="password">Password</label>
             </div>
 
@@ -60,4 +63,5 @@ include "head.php";
 
         </form>
     </div>
+    <?php include "footer.php"; ?>
 </body>

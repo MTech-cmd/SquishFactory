@@ -69,7 +69,7 @@ include 'head.php';
                                     style="max-width: 15rem;">
                             </div>
                             <div class="card-text">
-                                <a href="add.php?id=<?= $customMellows[$i]['ProductID'] ?>" class="btn btn-success">Buy Now!</a> <?= priceFix($customMellows[$i]['Price']) ?>
+                                <a href="cart.php?id=<?= $customMellows[$i]['ProductID'] ?>&stat=add" class="btn btn-success">Buy Now!</a> <?= priceFix($customMellows[$i]['Price']) ?>
                             </div>
                         </div>
                     </div>

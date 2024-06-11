@@ -75,53 +75,63 @@ include "head.php";
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>My Mellow - Sign Up</title>
 </head>
-<body>
+
+<body class="d-flex flex-column">
     <?php include "navbar.php"; ?>
     <div class="container mt-2">
         <h1>Sign up today!</h1>
         <form action="signup.php" method="POST">
 
             <div class="form-floating">
-                <input type="text" class="form-control m-1 <?= $_SESSION['skillissue'] === 'firstName' ? 'is-invalid' : '' ?>" id="firstName" name="firstName" placeholder="First Name"
-                    maxlength="60">
+                <input type="text"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'firstName' ? 'is-invalid' : '' ?>"
+                    id="firstName" name="firstName" placeholder="First Name" maxlength="60" required>
                 <label for="firstName">First Name</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control m-1 <?= $_SESSION['skillissue'] === 'lastName' ? 'is-invalid' : '' ?>" id="lastName" name="lastName" placeholder="Last Name"
-                    maxlength="60">
+                <input type="text"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'lastName' ? 'is-invalid' : '' ?>"
+                    id="lastName" name="lastName" placeholder="Last Name" maxlength="60" required>
                 <label for="lastName">Last Name</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control m-1 <?= $_SESSION['skillissue'] === 'address' ? 'is-invalid' : '' ?>" id="address" name="address" placeholder="Address"
-                    maxlength="255">
+                <input type="text"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'address' ? 'is-invalid' : '' ?>"
+                    id="address" name="address" placeholder="Address" maxlength="255">
                 <label for="address">Address</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control m-1 <?= $_SESSION['skillissue'] === 'phone' ? 'is-invalid' : '' ?>" id="phone" name="phone" placeholder="Phone Number"
-                    maxlength="30">
+                <input type="text"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'phone' ? 'is-invalid' : '' ?>" id="phone"
+                    name="phone" placeholder="Phone Number" maxlength="30">
                 <label for="phone">Phone Number</label>
             </div>
 
             <div class="form-floating">
-                <input type="email" class="form-control m-1 <?= $_SESSION['skillissue'] === 'email' ? 'is-invalid' : '' ?>" id="email" name="email" placeholder="Email Address"
-                    maxlength="60">
+                <input type="email"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'email' ? 'is-invalid' : '' ?>" id="email"
+                    name="email" placeholder="Email Address" maxlength="60" required>
                 <label for="email">Email Address</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control m-1 <?= $_SESSION['skillissue'] === 'username' ? 'is-invalid' : '' ?>" id="username" name="username" placeholder="Username"
-                    maxlength="60">
+                <input type="text"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'username' ? 'is-invalid' : '' ?>"
+                    id="username" name="username" placeholder="Username" maxlength="60" required>
                 <label for="username">Username</label>
             </div>
 
             <div class="form-floating">
-                <input type="password" class="form-control m-1 <?= $_SESSION['skillissue'] === 'password' ? 'is-invalid' : '' ?>" id="password" name="password" placeholder="Password">
+                <input type="password"
+                    class="form-control m-1 <?= $_SESSION['skillissue'] === 'password' ? 'is-invalid' : '' ?>"
+                    id="password" name="password" placeholder="Password" required>
                 <label for="password">Password</label>
             </div>
 
@@ -130,5 +140,7 @@ include "head.php";
 
         </form>
     </div>
+    <?php include "footer.php"; ?>
 </body>
+
 </html>

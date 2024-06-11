@@ -6,8 +6,8 @@ session_start();
 function extractPath($url)
 {
     $parsed_url = parse_url($url, PHP_URL_PATH);
-    $position = strpos($parsed_url, "/site");
-    return substr($parsed_url, $position + strlen("/site"));
+    $position = strpos($parsed_url, "/assets/accessories");
+    return "/assets/accessories" . substr($parsed_url, $position + strlen("/assets/accessories"));
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {

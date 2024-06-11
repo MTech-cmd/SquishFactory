@@ -21,21 +21,23 @@ include "head.php";
     <title>My Mellow - Customizer</title>
 </head>
 
-<body>
+<body class="d-flex flex-column">
     <?php include "navbar.php"; ?>
     <div id="base-image-container">
         <img id="base-image" src="#" alt="Base Image">
         <img id="accessory" src="#" alt="Accessory">
     </div>
-    <button id="generate-button" class="btn btn-secondary">Generate Image</button>
-    <button id="upload-btn" class="btn btn-success">Add to cart!</button>
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="alpha" autocomplete="off" checked="">
-        <label class="btn btn-outline-primary" for="alpha">Basic</label>
-        <input type="radio" class="btn-check" name="btnradio" id="bravo" autocomplete="off" checked="">
-        <label class="btn btn-outline-primary" for="bravo">Belly</label>
-        <input type="radio" class="btn-check" name="btnradio" id="charlie" autocomplete="off" checked="">
-        <label class="btn btn-outline-primary" for="charlie">DX</label>
+    <div>
+        <button id="generate-button" class="btn btn-secondary">Generate Image</button>
+        <button id="upload-btn" class="btn btn-success">Add to cart!</button>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="alpha" autocomplete="off" checked="">
+            <label class="btn btn-outline-primary" for="alpha">Basic</label>
+            <input type="radio" class="btn-check" name="btnradio" id="bravo" autocomplete="off" checked="">
+            <label class="btn btn-outline-primary" for="bravo">Belly</label>
+            <input type="radio" class="btn-check" name="btnradio" id="charlie" autocomplete="off" checked="">
+            <label class="btn btn-outline-primary" for="charlie">DX</label>
+        </div>
     </div>
 
     <div class="dropdown m-2">
@@ -48,20 +50,24 @@ include "head.php";
             <li><button class="dropdown-item" id="pink"><img src="./assets/pallet/pink.png" width="40"></button></li>
             <li><button class="dropdown-item" id="black"><img src="./assets/pallet/black.png" width="40"></button></li>
             <li><button class="dropdown-item" id="green"><img src="./assets/pallet/green.png" width="40"></button></li>
-            <li><button class="dropdown-item" id="orange"><img src="./assets/pallet/orange.png" width="40"></button></li>
-            <li><button class="dropdown-item" id="yellow"><img src="./assets/pallet/yellow.png" width="40"></button></li>
-            <li><button class="dropdown-item" id="purple"><img src="./assets/pallet/purple.png" width="40"></button></li>
+            <li><button class="dropdown-item" id="orange"><img src="./assets/pallet/orange.png" width="40"></button>
+            </li>
+            <li><button class="dropdown-item" id="yellow"><img src="./assets/pallet/yellow.png" width="40"></button>
+            </li>
+            <li><button class="dropdown-item" id="purple"><img src="./assets/pallet/purple.png" width="40"></button>
+            </li>
             <li><button class="dropdown-item" id="white"><img src="./assets/pallet/white.png" width="40"></button></li>
         </ul>
     </div>
     <select class="form-select" aria-label="Default select example">
-    <?php foreach ($accessories as $accessory) { ?>
+        <?php foreach ($accessories as $accessory) { ?>
         <option value="<?= $accessory['Filepath'] ?>"><?= $accessory['Name'] ?></option>
-    <?php } ?>
+        <?php } ?>
     </select>
 
     <div id="result"></div>
     <script src="./scripts/dist/engine.js"></script>
+    <?php include "footer.php"; ?>
 </body>
 
 </html>
