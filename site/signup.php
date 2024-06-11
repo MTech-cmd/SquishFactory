@@ -63,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['skillissue'] = null;
 
         header("Location: login.php");
-        ob_end_flush();
         die();
     }
     header("Location: signup.php");
