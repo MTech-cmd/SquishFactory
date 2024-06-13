@@ -44,7 +44,7 @@ include 'head.php';
                         foreach ($examples as $exampleMellow) { ?>
                     <div class="carousel-item">
                         <img src="./<?= $exampleMellow[0] ?>" class="d-block mx-auto w-25"
-                            alt="Example Mellow: <?= $exampleMellow ?>">
+                            alt="Example Mellow: <?= $exampleMellow[0] ?>">
                     </div>
                         <?php } 
                     } ?>

@@ -22,9 +22,8 @@ if (isset($_SESSION['UserID'])) {
             <!-- Collapsible content -->
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="index.php#scrollspy">Custom Mellows</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Merch (Coming Soon)</a></li>
                 <li class="nav-item"><a class="nav-link" href="imager.php">Customizer</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Source Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/MTech-cmd/SquishFactory">Source Code</a></li>
             </ul>
 
             <ul class="navbar-nav justify-content-around ">
@@ -36,8 +35,9 @@ if (isset($_SESSION['UserID'])) {
                             <i class="far fa-id-badge fa-lg icon-link"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Orders</a></li>
+                            <li><a class="dropdown-item" href="orders.php">Orders</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <!-- TODO: Make logout modal -->
                             <li><a class="btn btn-primary d-flex m-1 mb-0" href="logout.php">Log out</a></li>
                         </ul>
                         <li class="nav-item"><a href="cart.php" class="btn ms-md-1 mt-md-0 mt-1 px-0">
