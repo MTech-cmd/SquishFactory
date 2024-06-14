@@ -31,9 +31,20 @@ Here are some logos you might like ofcourse.\
 In order to host this website for yourself I recommend using Linux as your host.\
 In theory it should work on Windows but it is not tested there.\
 Install and setup a proper LAMP environment using Apache, PHP and MariaDB.\
+There are multiple ways you can install this program as shown here:
+- [Source](#build-from-src)
+- [Dist](#download-the-dist)
+
+## Build from src
 Install Node Package Manager and cd to the project root.\
 Run the following command to build all the styling and scripts: ```npm run build```.\
-Copy the entire site/ folder into the root of your Apache host.\
+Copy all the contents of the site/ folder into the root of your Apache host.
+
+## Download the dist
+You can also download the distribution directly from [this page](https://github.com/MTech-cmd/SquishFactory/releases/tag/V1) on GitHub.\
+Copy all the contents of the folder into the root of your Apache host.
+
+## Database
 Run the script found in db/import.sql in your MySQL console.\
 Insert the right db credentials in site/connector.php\
 You're ready!
