@@ -1,5 +1,4 @@
 <?php
-
 function priceFix($price)
 {
     $euro = substr($price, 0, -2);
@@ -13,13 +12,26 @@ if (!isset($_SESSION['UserID'])) {
     header("Location: require_login.html");
     die();
 }
-    
+
 require 'connector.php';
 
-$sql = "SELECT * FROM Orders WHERE UserID = ?";
+$limit = 5;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+$sql = "SELECT * FROM Orders WHERE UserID = :userID ORDER BY OrderDate DESC LIMIT :limit OFFSET :offset";
 $query = $pdo->prepare($sql);
-$query->execute([$_SESSION['UserID']]);
+$query->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+$query->bindParam(':limit', $limit, PDO::PARAM_INT);
+$query->bindParam(':offset', $offset, PDO::PARAM_INT);
+$query->execute();
 $orders = $query->fetchAll();
+
+$sqlCount = "SELECT COUNT(*) FROM Orders WHERE UserID = ?";
+$queryCount = $pdo->prepare($sqlCount);
+$queryCount->execute([$_SESSION['UserID']]);
+$totalOrders = $queryCount->fetchColumn();
+$totalPages = ceil($totalOrders / $limit);
 
 include 'head.php';
 ?>
@@ -62,8 +74,19 @@ include 'head.php';
                 </div>
             </div>
         <?php } ?>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <?php if ($page > 1) { ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a></li>
+                <?php } ?>
+                <?php if ($page < $totalPages) { ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
+                <?php } ?>
+            </ul>
+        </nav>
     </div>
 
     <?php include 'footer.php'; ?>
-
+</body>
 </html>

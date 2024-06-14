@@ -1,35 +1,43 @@
-<img src="src/assets/logo-admin.png" alt="admin logo" width="200">
-
-# About
-This is a website where you can manage your own web shop.\
-This site is fully developed by me, Mehdi El Khallouki.\
-I developed this website as an end-years project for my study at the Bit Academy as a full-stack developer.
-
-<img src="docs/readme-images/login.png" alt="login" width="700">
+<img src="docs/readme-images/logo.svg" width="300px" alt="My Mellow logo">
 
 # TOC
-[Features](#features)\
+[About](#about)\
+[License](#license)\
 [The Stack](#the-stack)\
-[Installation](#installation)\
-[Usage](#usage)
-# Features
-There are many features to this website but the main ones are customizing and ordering squishmellows. Customizing them. Adding new ones. and much more\
+[Installation](#installation)
+
+# About
+My Mellow is a website where you can customize your own squishmellow.\
+This website is entirely designed and developed by me, Mehdi El Khallouki.\
+It was made as a full-stack project for my study at the Bit Academy.\
+You can also find the website <a href="http://mymellow.mooo.com">here</a>\
+I hope you like it! Feel free to message me if you have any questions about the website.
+
+<img src="docs/readme-images/index.png" alt="My Mellow Index" width="800px">
+
+# License
+For this website I made use of the GNU Affero GPL V3.\
+You can read all of its details in the <a href="LICENSE">LICENSE</a> file
 
 # The Stack
-Naturally I use the popular LAMP (Linux, Apache, MariaDB, PHP) stack.\
-In addition I used a few other tools like Bootstrap (powered by Bootswatch) Fontawesome and Quicksand
-<img src="docs/readme-images/lamp.png" alt="lamp stack" width="350">
+The stack used for this project were the infamous LAMP (Linux, Apache, MySQL, PHP) stack along with Bootstrap (Powered by Bootswatch), Fontawesome for the icons and Quicksand as the font.\
+Here are some logos you might like ofcourse.\
+<img src="docs/readme-images/lamp.jpg" alt="Lamp Stack" width="400px">
+<img src="docs/readme-images/bootstrap.png" alt="Bootstrap" width="200px">
+<img src="docs/readme-images/bootswatch.png" alt="Bootswatch" width="200px">
+<img src="docs/readme-images/fontawesome.webp" alt="Font Awesome" width="300px">
 
 # Installation
-To host this on your own server configure a proper LAMP stack and clone the repo.\
-Cd into the repo and run the following command:
-```Bash
-npm run build
-```
-After that deploy all the contents of the /site directory into the root of your server folder.\
-Then run the /db/import.sql script into your MySQL console (This may be the CLI, PHPMyAdmin or DataGrip).
+In order to host this website for yourself I recommend using Linux as your host.\
+In theory it should work on Windows but it is not tested there.\
+Install and setup a proper LAMP environment using Apache, PHP and MariaDB.\
+Install Node Package Manager and cd to the project root.\
+Run the following command to build all the styling and scripts: ```npm run build```.\
+Copy the entire site/ folder into the root of your Apache host.\
+Run the script found in db/import.sql in your MySQL console.\
+Insert the right db credentials in site/connector.php\
+You're ready!
 
-# Usage
-In order to use this application you first must initialize a new administrator. Do this with the CLI-tool located at src/admin/add.php.\
-Run the tool with php.\
-Serve the website or visit it [here](mymellow.mooo.com).
+## Mock data
+I have preloaded some mock assets and data. you can find the assets in the site/assets/ folder.\
+In order to utilise the assets you must run the script in db/mock.sql the same way you run the import.sql. The website runs fine without it but then you must initialise the admin user manually using the CLI tool found in site/admin/add.php.\

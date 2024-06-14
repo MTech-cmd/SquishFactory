@@ -48,21 +48,26 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     }
 
     // Delete the product from the database
+    try {
         $sql = "DELETE FROM {$type} WHERE {$typeid} = :id";
         $query = $pdo->prepare($sql);
         $query->bindParam(':id', $_GET['id']);
         $query->execute();
 
-    // Delete the product image if it exists
-    $targetFile = "..{$product['Filepath']}";
-    if (file_exists($targetFile)) {
-        unlink($targetFile);
-    }
+// Delete the product image if it exists
+        $targetFile = "..{$product['Filepath']}";
+        if (file_exists($targetFile)) {
+            unlink($targetFile);
+        }
         $_SESSION['success'] = "Product deleted successfully";
         header($location);
-    die;
+        die();
+    } catch (PDOException $e) {
+        header("Location: no_delete.html");
+        die();
+    }
 } else {
     $_SESSION['error'] = "Invalid request";
     header($location);
-    die;
+    die();
 }

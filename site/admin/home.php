@@ -69,8 +69,19 @@ include "head.php";
         <?php if (empty($data)) { ?>
             <p class="text-white">There are no pending orders :)</p>
         <?php } else {
-            foreach ($data as $row) { ?>
-                <?= $row['OrderID'] ?>
+            foreach ($data as $row) {
+                $sqlName = "SELECT Username FROM Users WHERE UserID = ?";
+                $queryName = $pdo->prepare($sqlName);
+                $queryName->execute([$row['UserID']]);
+                $name = $queryName->fetch()['Username'];
+                ?>
+                <div class="card bg-dark text-white mb-3">
+                    <div class="card-header">Order #<?= $row['OrderID'] ?></div>
+                    <div class="card-body">
+                        <h5 class="card-title">User: <?= $name ?></h5>
+                        <p class="card-text">Price: <?= $row['Price'] ?></p>
+                    </div>
+                </div>
             <?php } 
         } ?>
     </div>
