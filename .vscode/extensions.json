@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "xdebug.php-pack",
+        "hossaini.bootstrap-intellisense",
+        "dbaeumer.vscode-eslint",
+        "rifi2k.format-html-in-php",
+        "bmewburn.vscode-intelephense-client",
+        "valeryanm.vscode-phpsab",
+        "esbenp.prettier-vscode",
+        "gruntfuggly.todo-tree",
+        "formulahendry.code-runner"
+    ]
+}
