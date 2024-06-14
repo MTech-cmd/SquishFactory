@@ -51,4 +51,4 @@ You're ready!
 
 ## Mock data
 I have preloaded some mock assets and data. you can find the assets in the site/assets/ folder.\
-In order to utilise the assets you must run the script in db/mock.sql the same way you run the import.sql. The website runs fine without it but then you must initialise the admin user manually using the CLI tool found in site/admin/add.php.\
+In order to utilise the assets you must run the script in db/mock.sql the same way you run the import.sql. The website runs fine without it but then you must initialise the admin user manually using the CLI tool found in site/admin/add.php.
