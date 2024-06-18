@@ -1,0 +1,36 @@
+{
+  "name": "squishfactory",
+  "version": "1.2",
+  "description": "A website where you can customize and order your own squishmellow",
+  "main": ".eslintrc.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "sh build.sh",
+    "dev": "sh dev.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MTech-cmd/SquishFactory.git"
+  },
+  "author": "Mehdi El Khallouki",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MTech-cmd/SquishFactory/issues"
+  },
+  "homepage": "https://github.com/MTech-cmd/SquishFactory#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootswatch": "^5.3.3",
+    "fontawesome-free": "^1.0.4",
+    "ncp": "^2.0.0",
+    "nodemon": "^3.1.3",
+    "sass": "^1.77.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
+  }
+}
