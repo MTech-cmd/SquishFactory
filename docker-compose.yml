@@ -1,16 +1,12 @@
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile.web
-    container_name: apache
+    image: php:8.3-apache
     ports:
       - "8080:80"
     volumes:
       - ./site:/var/www/html
     depends_on:
       - db
-      - node
 
   db:
     image: mariadb:latest
@@ -36,13 +32,6 @@ services:
       MYSQL_ROOT_PASSWORD: root_password
     depends_on:
       - db
-  
-  node:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./site:/app/site
 
 volumes:
   db_data:
