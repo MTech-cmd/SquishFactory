@@ -15,11 +15,8 @@ services:
   db:
     image: mariadb:latest
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: SquishFactory
-      MYSQL_USER: bit_academy
-      MYSQL_PASSWORD: bit_academy
+    env_file:
+      - .env
     ports:
       - "3366:3306"
     volumes:
@@ -31,9 +28,8 @@ services:
     restart: always
     ports:
       - "8081:80"
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root_password
+    env_file:
+      - .env
     depends_on:
       - db
   

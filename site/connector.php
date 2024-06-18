@@ -1,11 +1,19 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+// Load the .env file
+$dotenv = Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
 // Verander waarbij nodig
-$servername = "db";
-$port = "3306";
-$username = "bit_academy";
-$password = "bit_academy";
-$database = "SquishFactory";
+$servername = $_ENV['PMA_HOST'];
+$port = 3306;
+$username = $_ENV['MYSQL_USER'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DATABASE'];
 
 $prep = (!empty($port)) ? "mysql:host=$servername;port=$port;dbname=$database" : "mysql:host=$servername;dbname=$database";
 
