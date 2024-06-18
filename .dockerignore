@@ -10,4 +10,4 @@ dist/
 # Visual Studio Code
 .vscode/
 # Secrets
-.env
+db/
