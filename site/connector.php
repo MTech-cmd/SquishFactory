@@ -1,8 +1,8 @@
 <?php
 
 // Verander waarbij nodig
-$servername = "localhost";
-$port;
+$servername = "db";
+$port = "3306";
 $username = "bit_academy";
 $password = "bit_academy";
 $database = "SquishFactory";

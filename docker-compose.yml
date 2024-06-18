@@ -1,0 +1,49 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site:/var/www/html
+    depends_on:
+      - db
+      - node
+
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: SquishFactory
+      MYSQL_USER: bit_academy
+      MYSQL_PASSWORD: bit_academy
+    ports:
+      - "3366:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root_password
+    depends_on:
+      - db
+  
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./site:/app/site
+
+volumes:
+  db_data:
+    driver: local
