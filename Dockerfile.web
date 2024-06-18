@@ -1,11 +1,23 @@
 FROM php:8.3-apache
 
-RUN docker-php-ext-install zip pdo pdo_mysql \
-    && a2enmod rewrite \
-    && service apache2 start
-    
+# Install necessary packages
+RUN apt-get update \
+    && apt-get install -y zip unzip curl \
+    && docker-php-ext-install pdo pdo_mysql \
+    && a2enmod rewrite
+
+# Install Composer manually
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Set the working directory
 WORKDIR /var/www/html/
 
+# Copy Composer configuration files and install dependencies
+COPY composer.* ./
+RUN composer install --no-interaction --no-dev --optimize-autoloader
+
+# Copy the rest of the application files
 COPY . .
 
+# Set the default command to run Apache in the foreground
 CMD ["apache2-foreground"]

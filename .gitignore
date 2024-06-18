@@ -1,5 +1,14 @@
-node_modules/
-.idea/
+# Package Managers
+# Node Package Manager
+node_modules
 dist/
-.env
+# Composer
+/vendor/
+# IDEs
+# Jetbrains
+.idea/
+# Visual Studio Code
 .vscode/
+# Secrets
+.env
+db/

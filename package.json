@@ -1,6 +1,6 @@
 {
   "name": "squishfactory",
-  "version": "1.0.0",
+  "version": "1.2",
   "description": "A website where you can customize and order your own squishmellow",
   "main": ".eslintrc.js",
   "directories": {

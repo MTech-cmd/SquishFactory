@@ -1,0 +1,15 @@
+{
+    "name": "mtech/squish-factory",
+    "description": "A website where you can customize and order your own Squishmellow",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "Mehdi",
+            "email": "mehdiek@outlook.com"
+        }
+    ]
+}

@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./site:/var/www/html
+      - ./site:/var/www/html/site
     depends_on:
       - db
       - node
