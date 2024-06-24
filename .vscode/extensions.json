@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "hossaini.bootstrap-intellisense",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "rifi2k.format-html-in-php",
+        "xdebug.php-debug",
+        "xdebug.php-pack",
+        "bmewburn.vscode-intelephense-client",
+        "valeryanm.vscode-phpsab"
+    ]
+}

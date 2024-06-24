@@ -4,10 +4,5 @@ node_modules
 dist/
 # Composer
 /vendor/
-# IDEs
-# Jetbrains
-.idea/
-# Visual Studio Code
-.vscode/
 # Secrets
 db/
