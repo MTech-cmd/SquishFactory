@@ -7,6 +7,13 @@
         "xdebug.php-debug",
         "xdebug.php-pack",
         "bmewburn.vscode-intelephense-client",
-        "valeryanm.vscode-phpsab"
+        "valeryanm.vscode-phpsab",
+        "anbuselvanrocky.bootstrap5-vscode",
+        "naumovs.color-highlight",
+        "pranaygp.vscode-css-peek",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-complete-tag",
+        "formulahendry.auto-rename-tag",
+        "vincaslt.highlight-matching-tag"
     ]
 }
