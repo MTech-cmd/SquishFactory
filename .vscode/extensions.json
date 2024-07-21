@@ -14,6 +14,10 @@
         "formulahendry.auto-close-tag",
         "formulahendry.auto-complete-tag",
         "formulahendry.auto-rename-tag",
-        "vincaslt.highlight-matching-tag"
+        "vincaslt.highlight-matching-tag",
+        "joy-yu.css-snippets",
+        "ecmel.vscode-html-css",
+        "gydunhn.html-essentials",
+        "htmlhint.vscode-htmlhint"
     ]
 }
