@@ -14,8 +14,9 @@ include 'head.php';
     <div class="d-block">
         <header>
             <?php include 'navbar.php'; ?>
-            <div class="container text-center">
+            <div class="container text-center mt-1">
                 <h1>About Me</h1>
+                <img src="assets/mehdi.jpg" alt="Mehdi" class="img-fluid rounded-circle" width="200">
                 <article>
                     <p class="fs-2">Hi! I'm Mehdi and I'm a Full-stack Developer at the Bit Academy.
                         I've always been a tech nerd and enjoy expanding my knowledge in the world of IT! You can find my other projects at my GitHub and portfolio page!</p>
