@@ -23,6 +23,7 @@ if (isset($_SESSION['UserID'])) {
                 <li class="nav-item"><a class="nav-link" href="index.php#scrollspy">Custom Mellows</a></li>
                 <li class="nav-item"><a class="nav-link" href="imager.php">Customizer</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/MTech-cmd/SquishFactory">Source Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
             </ul>
 
             <ul class="navbar-nav justify-content-around ">

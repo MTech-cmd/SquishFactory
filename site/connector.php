@@ -10,7 +10,7 @@ $dotenv->load();
 
 // Verander waarbij nodig
 $servername = $_ENV['PMA_HOST'];
-$port = 3306;
+$port;
 $username = $_ENV['MYSQL_USER'];
 $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DATABASE'];

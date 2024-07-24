@@ -28,3 +28,16 @@ body {
 .bg-nav {
     background-color: rgba(27, 33, 65, 0.712);
 }
+
+.rotate {
+    animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
