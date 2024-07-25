@@ -42,14 +42,16 @@ There are multiple ways you can install this program as shown here:
 Install Node Package Manager and cd to the project root.\
 Run the following commands to build all the styling and scripts: 
 ```bash
+composer install
 npm install
 npm run build
 ```
-Copy all the contents of the site/ folder into the root of your Apache host.
+Copy all the contents of the site/ and vendor/ folder into the root of your Apache host.
 
 ## Download the distribution
 You can also download the distribution directly from [this page](https://github.com/MTech-cmd/SquishFactory/releases/tag/V1.3) on GitHub.\
 Copy all the contents of the folder into the root of your Apache host.\
+Be sure to still run `composer install`.\
 If you opt to host it on your own Apache install you can ommit all the docker files.
 
 ### Database
